@@ -1,0 +1,55 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<th:block th:fragment="header">
+    <header id="topnav">
+        <!-- Topbar Start -->
+        <div class="navbar-custom" style="background-color: white">
+            <div class="container-fluid">
+                <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
+                    <li class="d-none d-sm-block">
+                        <form class="app-search">
+                            <div class="app-search-box">
+                                <div class="input-group">
+                                    <div class="logo-box" style="padding:10px 0">
+                                        <a href="/index" class="logo text-center">
+                                    <span class="logo-lg">
+                                        <img src="/assets/images/imager_26_36862_700.jpg" alt="" height="80">
+                                    </span>
+                                        </a>
+                                    </div>
+                                    <div class="bg text-light text-left col-sm-9" style="padding-top:30px"><input type="text" placeholder="Search..." style="heigth:70%" class="form-control">
+                                    </div>
+                                    <div class="input-group-append" style="padding-top:20px">
+                                        <button class="btn" type="submit">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                    <div class="btn-group col-sm-0">
+                                        <button class="btn  dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="border-radius: 50%;background-color: ;border:none">
+                                            <img src="/assets/images/user.png" alt="user-image" style="border-radius: 50%;width: 70px">
+                                            <span class="pro-user-name ml-1">
+                                    <i class="mdi mdi-chevron-down"></i>
+                                </span>
+
+                                        </button>
+                                            <span class="pro-user-name ml-1">
+                                    <i class="mdi mdi-chevron-down"></i>
+                                </span>
+                                            <th:block th:text="${username}"/>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="/products">List of Product</a></li>
+                                            <li><a class="dropdown-item" href="/users">List of User</a></li>
+                                            <li><a class="dropdown-item" href="/logout">Sign Out</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </header>
+</th:block>

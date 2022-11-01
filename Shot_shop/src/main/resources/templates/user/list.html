@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <title>List of customers</title>
+    <th:block th:replace="layout/head"/>
+</head>
+
+<body>
+<div class="main-container">
+    <header>
+        <div class="row">
+            <div class="col-sm-5">
+                <h1>List Of User</h1>
+            </div>
+        </div>
+    </header>
+
+    <div class="content">
+        <input type="hidden" id="currentRow">
+        <table id="tbUser" class="table table-hover">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>FullName</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Role</th>
+                <th colspan="2">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div id="footer" class="footer"></div>
+
+<th:block th:replace="/user/modalEdit :: edit"/>
+
+<th:block th:replace="layout/script" />
+
+<script>
+    let page = {
+        urls: {
+            getAllUsers: App.BASE_URL_USER,
+            getUserById: App.BASE_URL_USER,
+            delete: App.BASE_URL_USER + "/delete",
+            update: App.BASE_URL_USER + "/update"
+        },
+        elements: {},
+        loadData: {},
+        commands: {},
+        dialogs: {
+            elements: {},
+            loadData: {},
+            commands: {},
+        },
+        initializeEventControl: {}
+    }
+
+    let user = new User();
+
+
+
+    page.elements.tbUser = $("#tbUser tbody");
+    page.elements.modalUpdate = $("#modalUpdate");
+
+    page.dialogs.elements.frmUpdate = $("#frmUpdate");
+    page.dialogs.elements.fullNameUp = $("#fullNameUp");
+    page.dialogs.elements.emailUp = $("#emailUp");
+    page.dialogs.elements.phoneUp = $("#phoneUp");
+    page.dialogs.elements.addressUp = $("#addressUp");
+    page.dialogs.elements.roleIdUp = $("#roleIdUp");
+    page.dialogs.elements.btnUpdate = $("#btnUpdate");
+
+    page.dialogs.elements.btnUpdate.on("click", () => {
+        page.dialogs.elements.frmUpdate.trigger("submit");
+    })
+
+    page.commands.handleDeleteUser = () => {
+        $(".delete").on("click", function () {
+            let userId = $(this).data("id");
+
+            App.SweetAlert.showSuspendedConfirmDialog()
+            .then((result) => {
+                if(result.isConfirmed) {
+                    page.commands.deleteUser(userId);
+                }
+            });
+        })
+    }
+
+    page.commands.handleOpenModalUpdate = () => {
+        $(".edit").on("click", function () {
+            let userId = $(this).data("id");
+            page.commands.getUserById(userId).then(() => {
+                page.dialogs.elements.fullNameUp.val(user.fullName);
+                page.dialogs.elements.emailUp.val(user.username);
+                page.dialogs.elements.phoneUp.val(user.phone);
+                page.dialogs.elements.addressUp.val(user.address);
+                page.dialogs.elements.roleIdUp.val(user.role.id);
+
+                page.elements.modalUpdate.modal("show");
+
+            })
+
+            .catch(() => {
+                App.IziToast.showErrorAlert(App.AlertMessageVi.ERROR_404)
+            })
+        })
+    }
+
+    page.commands.getAllUsers = () => {
+        $.ajax({
+            headers: {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            type: "GET",
+            url: page.urls.getAllUsers
+        })
+            .done((data) => {
+                data.map(item => {
+                    page.elements.tbUser.prepend(App.renderRowUser(item));
+
+                    page.commands.handleOpenModalUpdate();
+                    page.commands.handleDeleteUser();
+                    page.commands.initTooltip();
+                });
+            })
+            .fail((jqXHR) => {
+                App.SweetAlert.showAlertError(App.AlertMessageVi.ERROR_500);
+            })
+    }
+
+    page.commands.getUserById = (userId) => {
+        return $.ajax({
+            headers: {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            type: "GET",
+            url: page.urls.getUserById + "/" + userId
+            })
+            .done((data) => {
+                user = data;
+            })
+            .fail((jqXHR) => {
+                console.log("jqXHR ======");
+                console.log(jqXHR);
+            });
+    }
+
+    page.dialogs.commands.update = () => {
+        user.id;
+        user.fullName = page.dialogs.elements.fullNameUp.val();
+        user.username = page.dialogs.elements.emailUp.val();
+        user.phone = page.dialogs.elements.phoneUp.val();
+        user.address = page.dialogs.elements.addressUp.val();
+        user.role.id = page.dialogs.elements.roleIdUp.val();
+        $.ajax({
+            headers: {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            type: "POST",
+            url: page.urls.update,
+            data: JSON.stringify(user)
+        })
+        .done((data) => {
+            let currentRow = $("#tr_" + data.id)
+            currentRow.replaceWith(App.renderRowUser(data));
+
+            page.commands.handleOpenModalUpdate();
+            page.commands.handleDeleteUser();
+            page.commands.initTooltip();
+
+            page.elements.modalUpdate.modal("hide");
+            App.SweetAlert.showAlertSuccess(App.AlertMessageVi.SUCCESS_UPDATED);
+        })
+        .fail((jqXHR) => {
+            App.SweetAlert.showAlertError(App.AlertMessageVi.ERROR_400);
+        })
+    }
+
+    page.commands.deleteUser = (userId) => {
+        $.ajax({
+            headers: {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            type: "DELETE",
+            url: page.urls.delete + "/" + userId
+        })
+            .done(() => {
+                $("#tr_" + userId).remove();
+                App.SweetAlert.showAlertSuccess(App.AlertMessageVi.SUCCESS_DEACTIVATE);
+            })
+            .fail((jqXHR) => {
+                App.SweetAlert.showAlertError(App.AlertMessageVi.ERROR_400);
+            })
+    }
+
+    page.dialogs.elements.frmUpdate.validate({
+        rules: {
+            fullNameUp: {
+                required: true,
+                minlength: 5,
+                maxlength: 50
+            }
+        },
+        messages: {
+            fullNameUp: {
+                required: "Vui lòng nhập tên đầy đủ",
+                minlength: "Họ tên tối thiểu 5 ký tự",
+                maxlength: "Họ tên tối đa 50 ký tự"
+            }
+        },
+        submitHandler: function(){
+            page.dialogs.commands.update();
+        }
+    })
+
+    page.commands.initTooltip = () => {
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    }
+
+    page.initializeEventControl = () => {
+
+    }
+
+    page.loadData = () => {
+        page.commands.getAllUsers();
+    }
+
+    $(() => {
+        page.loadData();
+
+        page.initializeEventControl();
+    })
+
+</script>
+
+</body>
+
+</html>
