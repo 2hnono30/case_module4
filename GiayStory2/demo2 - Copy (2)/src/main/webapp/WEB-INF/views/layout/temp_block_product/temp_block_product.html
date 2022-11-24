@@ -1,0 +1,19 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<th:block th:fragment="temp_block_product">
+
+    <textarea id="tempBlockProduct" class="hide">
+         <div class="content--product">
+            <div class="content--product--top">
+                <img id ="btnShowInfoProduct_{1}" data-id = "{2}" src="{0}" alt="" width="200" height="200">
+            </div>
+            <div class="content--product--bottom">
+                <p>{6}</p>
+                <p>{3}</p>
+                <p>{4} VNĐ</p>
+                <p class="add--cart" data-id = "{5}">Thêm Vào Giỏ Hàng</p>
+            </div>
+        </div>
+    </textarea>
+
+</th:block>

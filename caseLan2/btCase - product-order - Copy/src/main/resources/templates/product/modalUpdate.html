@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<th:block th:fragment="modalUpdate">
+    <div class="modal fade" id="modalUpdate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal update</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-alert-danger hide"></div>
+                    <form id="frmUpdate" method="post">
+                        <div class="col-lg-8 fl">
+                            <div class="row col-lg-12 mt-3">
+                                <div class="col-lg-6">
+                                    <label>Name Product</label>
+                                    <input type="text" id="nameUp" name="nameUp" class="form-control">
+                                </div>
+                                <div class="col-lg-6">
+                                    <label>Amount</label>
+                                    <input type="number" id="amountUp" name="amountUp" class="form-control">
+                                </div>
+                            </div>
+                            <div class="row col-lg-12 mt-3">
+                                <div class="col-lg-6">
+                                    <label>Price</label>
+                                    <input type="number" id="priceUp" name="priceUp" class="form-control">
+                                </div>
+                                <div class="col-lg-6">
+                                    <label>Description</label>
+                                    <textarea type="text" id="descriptionUp" name="descriptionUp" class="form-control" rows="3"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 fl">
+                            <section>
+                                <div class="wrapper">
+                                    <div class="image-preview">
+                                        <canvas id="canvasUp" style="display: none;" width="4094" height="2048"></canvas>
+                                    </div>
+                                    <div class="content" style="opacity: 1;">
+                                        <div class="icon">
+                                            <i class="fas fa-cloud-upload-alt"></i>
+                                        </div>
+                                        <div class="text">
+                                            No file chosen, yet!
+                                        </div>
+                                        <div class="text">
+                                            Max file size = 2MB
+                                        </div>
+                                    </div>
+                                    <div class="clear-image-preview">
+                                        <i class="fas fa-times"></i>
+                                    </div>
+                                    <div class="file-name">
+                                        Change image
+                                    </div>
+                                </div>
+                                <input type="file" id="imageFileUp" accept="image/jpeg, image/png" hidden="">
+                            </section>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="btnUpdate" class="btn btn-primary">
+                        <i class="fas fa-edit"></i>
+                        Edit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+</body>
+</html>

@@ -9,6 +9,7 @@ import com.cg.util.AppUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -23,6 +24,7 @@ public class UserRestController {
     private IUserService userService;
 
     @GetMapping
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<Iterable<User>> getAll(){
         return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
     }
@@ -38,6 +40,7 @@ public class UserRestController {
     }
 
     @PostMapping("/update")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<UserUpdateDTO> update(@RequestBody UserUpdateDTO userUpdateDTO){
         Optional<User> userOptional = userService.findById(userUpdateDTO.getId());
         if(!userOptional.isPresent()) {
@@ -50,6 +53,7 @@ public class UserRestController {
     }
 
     @DeleteMapping("/delete/{userId}")
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
     public ResponseEntity<UserDTO> delete(@PathVariable Long userId) {
         Optional<User> userOptional = userService.findById(userId);
         if(!userOptional.isPresent()){

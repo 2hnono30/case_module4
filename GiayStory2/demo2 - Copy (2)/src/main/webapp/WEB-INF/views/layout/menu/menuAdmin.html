@@ -1,0 +1,71 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<th:block th:fragment="menu">
+    <div class="header" th:switch="${userDTO}">
+        <div class="header--left">
+            <h1 style="margin-left: 32px"><a href="/home"><img src="/assets/img/unnamed.jpg" alt=""></a></h1>
+        </div>
+        <div class="header--right" th:case="null">
+            <form action="" class="header--right--form">
+                <input type="text" class="header--right--form--search" placeholder="Tìm Kiếm sản phẩm...">
+                <button><i class="fa fa-search" aria-hidden="true"></i></button>
+                <div class="header--right--form--result hide">
+                    <div class="content--product--search">
+
+                    </div>
+                    <div class="header--right--form--result--search">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        <p></p>
+                    </div>
+                </div>
+            </form>
+            <a href="/login">
+                <i class="fa fa-user-circle" aria-hidden="true"></i>
+                <span>Đăng Nhập</span>
+            </a>
+            <a href="javascript: void(0);" class="show_cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+        </div>
+        <div class="header--right" th:case="*">
+            <form action="" class="header--right--form">
+                <input type="text" class="header--right--form--search" placeholder="Tìm Kiếm sản phẩm...">
+                <button><i class="fa fa-search" aria-hidden="true"></i></button>
+                <div class="header--right--form--result hide">
+                    <div class="content--product--search">
+
+                    </div>
+                    <div class="header--right--form--result--search">
+                        <p></p>
+                    </div>
+                </div>
+            </form>
+
+            <li class="nav-item dropdown ">
+                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
+                    <i class="fa fa-user-circle" aria-hidden="true"></i>
+                    <span th:text="${userDTO.fullName}" data-th-id="${userDTO.id}"></span>
+                </a>
+                <ul class="dropdown-menu" >
+                    <div>
+                        <div th:if="${user != U}">
+                            <!--            <div th:if="${role.getCode().equalsIgnoreCase('user')}">-->
+                            <!--                <th:block th:replace="/layout/menu/menuAdmin::navBar-login"/>-->
+                            <!--            </div>-->
+                            <div th:if="${role.getCode().equalsIgnoreCase('admin')}">
+                                <th:block th:replace="/layout/menu/menuAdmin::menuAdmin"/>
+                            </div>
+                        </div>
+                        <div th:if="${user.role == "ADMIN"}">
+
+                        </div>
+                    </div>
+<!--                    <li><a class="dropdown-item show_info_user" href="#" >Profile</a></li>-->
+<!--                    <li><a class="dropdown-item" href="#">Product</a></li>-->
+                    <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                </ul>
+            </li>
+
+
+            <a href="javascript: void(0);" class="show_cart" data-th-id="${userDTO.id}"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+        </div>
+    </div>
+</th:block>

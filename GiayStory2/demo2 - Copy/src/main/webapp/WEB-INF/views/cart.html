@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <th:block th:replace="/layout/head :: head" />
+</head>
+<body>
+<div class="container">
+    <th:block th:replace="/layout/menu/menu :: menu" />
+    <div class="content--cart">
+        <div class="content--cart--product">
+            <h3>Giỏ Hàng Của Bạn</h3>
+            <p>Bạn đang có <b></b> trong giỏ hàng</p>
+            <div class="content--cart--product--list">
+
+            </div>
+        </div>
+        <div class="content--cart--money">
+            <div class="content--cart--money--top">
+                <h4>Thông tin đơn hàng</h4>
+            </div>
+            <div class="content--cart--money--bottom">
+                <h4>Tổng Tiền : </h4>
+                <span></span>
+                <a href="javascript: void(0);">Đặt hàng</a>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:replace="/layout/cartModel/cart_modal :: cart_modal" />
+<th:block th:replace="/layout/temp_block_product/temp_block_product_by_cart_page :: temp_block_product_by_cart_page" />
+<th:block th:replace="/layout/script :: script" />
+<script>
+    let page = {
+        url : {
+            getAllProvince : "https://vapi.vnappmob.com/api/province/",
+            getAllDistrict : "https://vapi.vnappmob.com/api/province/district/",
+            getAllWard : "https://vapi.vnappmob.com/api/province/ward/",
+            getAllCartItem : App.BASER_URL + "carts/",
+            doReduceCart : App.BASER_URL + "carts/reduce",
+            doIncreaseCart : App.BASER_URL + "carts/increase",
+            doRemoveCartItem : App.BASER_URL + "carts/remove-cart-item",
+            doCreateOrder : App.BASER_URL + "orders/add"
+        },
+        elements : {
+            locationRegion : {}
+        },
+        loadData : {},
+        commands : {},
+        dialogs : {
+            elements: {},
+            commands: {}
+        },
+        initializeControllEvents : {}
+    }
+
+    page.elements.locationRegion.province = $('#province--delivery');
+    page.elements.locationRegion.district = $('#district--delivery');
+    page.elements.locationRegion.ward = $('#ward--delivery');
+    page.elements.locationRegion.address = $('#address--delivery');
+    page.elements.deliveryDate = $('#delivery--date');
+    page.elements.cartInfoGrandTotal = $('.content--cart--money--bottom span');
+    page.elements.btnOrder = $('.content--cart--money--bottom a');
+    page.commands.drawProvinces = ()=> {
+        return $.ajax({
+            "headers": {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            "type": "GET",
+            "url" : page.url.getAllProvince
+        })
+        .done((data) => {
+            if (data.results.length === 0) {
+                App.IziToast.showErrorAlert('Không Thể Tải Danh Sách Tỉnh - Thành Phố');
+            }
+            else {
+                $.each(data.results, (i, item) => {
+                    let str = `<option value="${item.province_id}">${item.province_name}</option>`;
+
+                    $('#province--delivery').prepend(str);
+                })
+            }
+        })
+    }
+    page.commands.drawDistricts = (provinceId)=>{
+        return $.ajax({
+            "headers": {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            "type": "GET",
+            "url" : page.url.getAllDistrict+ provinceId
+        })
+        .done((data) => {
+            $('#district--delivery').html('');
+
+            if (data.results.length === 0) {
+                App.IziToast.showErrorAlert('Không Thể Tải Danh Sách Quận - Phường - Huyện');
+            }
+            else {
+                $.each(data.results, (i, item) => {
+                    let str = `<option value="${item.district_id}">${item.district_name}</option>`;
+
+                    $('#district--delivery').prepend(str);
+                })
+            }
+        });
+    }
+    page.commands.drawWards = (districtId) => {
+        return $.ajax({
+            "headers": {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            "type": "GET",
+            "url": page.url.getAllWard + districtId,
+        })
+            .done((data) => {
+                $('#ward--delivery').html('');
+                if (data.results.length === 0) {
+                    App.IziToast.showErrorAlert('Không Thể Tải Danh Sách Xã - Thị Trấn');
+                }
+                else {
+                    $.each(data.results, (i, item) => {
+                        let str = `<option value="${item.ward_id}">${item.ward_name}</option>`;
+
+                        $('#ward--delivery').prepend(str);
+                    })
+                }
+            });
+    }
+    // page.commands.drawProvinces().then(() => {
+    //     let provinceId = $('#province--delivery').val();
+    //     page.commands.drawDistricts(provinceId).then(() => {
+    //         let districtId = $('#district--delivery').val();
+    //         page.commands.drawWards(districtId);
+    //     });
+    // });
+    page.commands.provinceChange = () => {
+        page.elements.locationRegion.province.on('change', () => {
+            let provinceId =  page.elements.locationRegion.province.val();
+
+            page.commands.drawDistricts(provinceId).then(() => {
+                let districtId = $('#district--delivery').val();
+                page.commands.drawWards(districtId);
+            });
+        });
+    }
+    page.commands.districtChange = () => {
+        page.elements.locationRegion.district.on('change', () => {
+            let districtId =  page.elements.locationRegion.district.val();
+            page.commands.drawWards(districtId);
+        });
+    }
+
+    let tempBlockProductByCartPage = $.validator.format($.trim($('#tempBlockProductByCartPage').val().toString()));
+
+    function addBlockProductByCartPage() {
+        $('.content--cart--product--list').prepend($(tempBlockProductByCartPage(cartItem.product.urlImage,cartItem.title,cartItem.price,cartItem.totalPrice,cartItem.quantity,cartItem.product.id)));
+    }
+
+
+    page.initializeControllEvents = () => {
+        page.commands.provinceChange();
+        page.commands.districtChange();
+    }
+
+    $(()=>{
+        page.initializeControllEvents();
+        page.commands.loadCart();
+    })
+
+    page.commands.loadCart = () => {
+        let userId = $('.header--right a span').attr('id');
+        $.ajax({
+            "headers": {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            "type": "GET",
+            "url": page.url.getAllCartItem + userId,
+        })
+        .done((data) => {
+            if (data.noCart){
+                App.IziToast.showSuccessAlert(data.noCart);
+            }else {
+                let grandTotal = 0;
+                $.each(data, (i, item) => {
+                    cartItem = item;
+                    cartItem.totalPrice = App.formatNumberSpace(cartItem.totalPrice);
+                    cartItem.price = App.formatNumberSpace(cartItem.price);
+                    grandTotal = App.formatNumberSpace(cartItem.cart.grandTotal);
+                    addBlockProductByCartPage();
+                });
+                page.elements.cartInfoGrandTotal.text(`${grandTotal} đ`);
+                $('.content--cart--product>p>b').text(`${data.length} sản phẩm`);
+            }
+            page.commands.reduce();
+            page.commands.increase();
+            page.commands.removeProductByCart();
+            page.commands.doCreateOrder();
+        })
+        .fail((jqXHR) => {
+            if (jqXHR.status === 401)  {
+                App.IziToast.showErrorAlert("Vui Lòng Đăng Nhập Để Xem Giỏ Hàng Của Bạn");
+            }else {
+
+            }
+        })
+    }
+
+    page.commands.reduce = () => {
+        $('.quantity-up').on("click",function (){
+            let cartItemReduce = new CartItem();
+            let productId = $(this).data("id");
+            let userId = $('.header--right a span').attr('id');
+            let quantity = $(`.input_${productId}`).val();
+            let reduceValue = Number(quantity) + 1;
+            let cart = new Cart();
+
+            if ($.isNumeric(quantity)) {
+                cart.userId = userId;
+                cart.productId = productId;
+                cart.quantity = 1;
+                $.ajax({
+                    "headers": {
+                        "accept": "application/json",
+                        "content-type": "application/json"
+                    },
+                    "type": "POST",
+                    "url": page.url.doReduceCart,
+                    "data": JSON.stringify(cart),
+                })
+                .done((data) => {
+                    cartItemReduce = data.cartItem;
+                    App.formatNumberSpace(cartItemReduce.cart.grandTotal);
+                    App.formatNumberSpace(cartItemReduce.totalPrice);
+                    $(`.input_${productId}`).val(cartItemReduce.quantity);
+                    page.elements.cartInfoGrandTotal.text(`${cartItemReduce.cart.grandTotal} đ`);
+                    $(`.total--price_${productId}`).text(`${cartItemReduce.totalPrice} đ`);
+                    // App.IziToast.showSuccessAlert(data.success);
+                })
+                .fail((jqXHR) => {
+                    if (jqXHR.status === 401)  {
+                        App.IziToast.showErrorAlert("Vui Lòng Đăng Nhập Để Xem Giỏ Hàng Của Bạn");
+                    }else {
+
+                    }
+                })
+            }
+        })
+    }
+
+    page.commands.increase = () => {
+        $('.quantity-down').on('click',function (){
+            let cartItemIncrease = new CartItem();
+            let productId = $(this).data("id");
+            let userId = $('.header--right a span').attr('id');
+            let quantity = $(`.input_${productId}`).val();
+            let reduceValue = Number(quantity) - 1;
+            let cart = new Cart();
+
+            if ($.isNumeric(quantity)) {
+                cart.userId = userId;
+                cart.productId = productId;
+                cart.quantity = 1;
+                $.ajax({
+                    "headers": {
+                        "accept": "application/json",
+                        "content-type": "application/json"
+                    },
+                    "type": "POST",
+                    "url": page.url.doIncreaseCart,
+                    "data": JSON.stringify(cart),
+                })
+                .done((data) => {
+                    cartItemIncrease = data.cartItem;
+                    App.formatNumberSpace(cartItemIncrease.cart.grandTotal);
+                    App.formatNumberSpace(cartItemIncrease.totalPrice);
+                    $(`.input_${productId}`).val(cartItemIncrease.quantity);
+                    page.elements.cartInfoGrandTotal.text(`${cartItemIncrease.cart.grandTotal} đ`);
+                    $(`.total--price_${productId}`).text(`${cartItemIncrease.totalPrice} đ`);
+                    // App.IziToast.showSuccessAlert(data.success);
+                })
+                .fail((jqXHR) => {
+                    if (jqXHR.status === 401)  {
+                        App.IziToast.showErrorAlert("Vui Lòng Đăng Nhập Để Xem Giỏ Hàng Của Bạn");
+                    }else {
+                        if(jqXHR.responseJSON.message){
+                            let msg = jqXHR.responseJSON.message;
+                            App.IziToast.showErrorAlert(msg);
+                        }else if(jqXHR.responseJSON){
+                            $.each(jqXHR.responseJSON,(key,item) =>{
+                                App.IziToast.showErrorAlert(item);
+                            })
+                        }
+                    }
+                })
+            }
+        })
+    }
+
+    page.commands.removeProductByCart = () => {
+        $('.content--cart--product--list--first a').on("click",function (){
+            let productId = $(this).data("id");
+            let userId = $('.header--right a span').attr('id');
+            let cart = new Cart();
+            cart.userId = userId;
+            cart.productId = productId;
+            cart.quantity = 0;
+
+            console.log(cart);
+
+            $.ajax({
+                "headers": {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "POST",
+                "url": page.url.doRemoveCartItem,
+                "data": JSON.stringify(cart),
+            })
+            .done((data) => {
+                $(`.cart--product--${productId}`).remove();
+                page.elements.cartInfoGrandTotal.text(`${data.cartInfo.grandTotal} đ`);
+                App.IziToast.showSuccessAlert(data.success);
+            })
+            .fail((jqXHR) => {
+                if (jqXHR.status === 401)  {
+                    App.IziToast.showErrorAlert("Vui Lòng Đăng Nhập Để Xem Giỏ Hàng Của Bạn");
+                }else {
+                    if(jqXHR.responseJSON.message){
+                        let msg = jqXHR.responseJSON.message;
+                        App.IziToast.showErrorAlert(msg);
+                    }else if(jqXHR.responseJSON){
+                        $.each(jqXHR.responseJSON,(key,item) =>{
+                            App.IziToast.showErrorAlert(item);
+                        })
+                    }
+                }
+            })
+        })
+    }
+
+    page.commands.doCreateOrder = () => {
+        page.elements.btnOrder.on('click',function (){
+            let locationRegion = new LocationRegion();
+            let order = new Order();
+            locationRegion.provinceId = page.elements.locationRegion.province.val();
+            locationRegion.provinceName = page.elements.locationRegion.province.find(":selected").text();
+            locationRegion.districtId = page.elements.locationRegion.district.val();
+            locationRegion.districtName = page.elements.locationRegion.district.find(":selected").text();
+            locationRegion.wardId =  page.elements.locationRegion.ward.val();
+            locationRegion.wardName =  page.elements.locationRegion.ward.find(":selected").text();
+            locationRegion.address =  page.elements.locationRegion.address.val();
+
+            order.userId = $('.header--right a span').attr('id');
+            order.locationRegion = locationRegion;
+            order.deliveryDate = page.elements.deliveryDate.val();
+
+            $.ajax({
+                "headers": {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                "type": "POST",
+                "url": page.url.doCreateOrder,
+                "data": JSON.stringify(order),
+            })
+                .done((data) => {
+                    App.IziToast.showSuccessAlert(data.success);
+                    $('.content--cart--product--list').html("");
+                    page.elements.locationRegion.address.val("");
+                    page.elements.cartInfoGrandTotal.text(`0 đ`);
+                    $('.content--cart--product>p>b').text(`0 sản phẩm`);
+                })
+                .fail((jqXHR) => {
+                    if (jqXHR.status === 401)  {
+                        App.IziToast.showErrorAlert("Vui Lòng Đăng Nhập Để Xem Giỏ Hàng Của Bạn");
+                    }else {
+                        if(jqXHR.responseJSON.message){
+                            let msg = jqXHR.responseJSON.message;
+                            App.IziToast.showErrorAlert(msg);
+                        }else if(jqXHR.responseJSON){
+                            $.each(jqXHR.responseJSON,(key,item) =>{
+                                App.IziToast.showErrorAlert(item);
+                            })
+                        }
+                    }
+                })
+        })
+    }
+
+</script>
+</body>
+</html>

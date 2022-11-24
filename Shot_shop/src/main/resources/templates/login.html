@@ -74,11 +74,11 @@
                         <input id="emailSignUp" type="text" placeholder="Email" />
                         <input id="passSignUp" type="password" placeholder="Password" />
                         <input id="repeatpass" type="password" placeholder="Repeat Password" /><br>
-                                            <label for="role">Role group</label>
-                                            <select name="role" id="role">
-                                                <option value="1">Admin role</option>
-                                                <option value="2">User role</option>
-                                            </select>
+<!--                                            <label for="role">Role group</label>-->
+<!--                                            <select name="role" id="role">-->
+<!--                                                <option value="1">Admin role</option>-->
+<!--                                                <option value="2">User role</option>-->
+<!--                                            </select>-->
                             <button type="submit" id="btnSignUp" class="btn_sign_up" >SIGN UP</button>
 
 
@@ -130,7 +130,8 @@
             "address": page.elements.address.val(),
             "phone": page.elements.phone.val(),
             "role": {
-                "id": page.elements.role.val()
+                // "id": page.elements.role.val()
+                "id":"2"
             }
         };
         if((page.elements.passwordSignUp.val()) == (page.elements.repeatpass.val())){
@@ -171,7 +172,7 @@
             .done(() => {
                 App.IziToast.showSuccessAlert("Successful!");
                 setTimeout(() => {
-                    window.location.href = "/products";
+                    window.location.href = "http://localhost:8080/index";
                 }, 150)
             })
             .fail(() => {
