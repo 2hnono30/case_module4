@@ -29,7 +29,6 @@ public interface CartItemRepository extends JpaRepository<CartItem, Long> {
     @Query("SELECT COUNT(c) FROM CartItem AS c WHERE c.cart.id = :cartId")
     long countCartItemByCartId(@Param("cartId") long cartId);
 
-
     @Query(value = "SELECT SUM(ci.amount) FROM cart_items AS ci WHERE ci.cart_id = :cartId", nativeQuery = true)
     BigDecimal getSumAmount(@Param("cartId") long cartId);
 

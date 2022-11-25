@@ -27,7 +27,7 @@
 
 .wrapper .image-preview{
     position: absolute;
-    height: 100%;
+    /*height: 100%;*/
     width: 380px;
     display: flex;
     align-items: center;

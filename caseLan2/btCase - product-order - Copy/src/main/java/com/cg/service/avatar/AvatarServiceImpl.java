@@ -1,11 +1,21 @@
 package com.cg.service.avatar;
 
 import com.cg.model.Avatar;
+import com.cg.repository.AvatarRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+
+@Service
+@Transactional
 public class AvatarServiceImpl implements AvatarService{
+
+    @Autowired
+    private AvatarRepository avatarRepository;
     @Override
     public List<Avatar> findAll() {
         return null;
@@ -31,8 +41,9 @@ public class AvatarServiceImpl implements AvatarService{
 
     }
 
+
     @Override
-    public Avatar getById() {
-        return null;
+    public Avatar getById(String id) {
+        return avatarRepository.getById(id);
     }
 }

@@ -49,8 +49,8 @@
                                                 <span class="pro-user-name ml-1">
                                                     <i class="mdi mdi-chevron-down"></i>
                                                 </span>
-                                                <th:block th:text="${username}"/>
                                                 <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item" href="#"><th:block th:text="${user.fullName}"/></a></li>
                                                     <li><a class="dropdown-item" href="/logout">Sign Out</a></li>
                                                 </ul>
                                             </div>
@@ -71,10 +71,9 @@
                                                 <span class="pro-user-name ml-1">
                                                     <i class="mdi mdi-chevron-down"></i>
                                                 </span>
-                                                <th:block th:text="${username}"/>
                                                 <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="/products">List of Product</a>
-                                                    </li>
+                                                    <li><a class="dropdown-item" href="#"><th:block th:text="${user.fullName}"/></a></li>
+                                                    <li><a class="dropdown-item" href="/products">List of Product</a></li>
                                                     <li><a class="dropdown-item" href="/users">List of User</a></li>
                                                     <li><a class="dropdown-item" href="/logout">Sign Out</a></li>
                                                 </ul>

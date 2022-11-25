@@ -87,6 +87,17 @@ public class ProductServiceImpl implements IProductService{
         return productRepository.getProductDTOById(id);
     }
 
+    @Override
+    public void deleteProductDTO(long productId) {
+        productRepository.deleteProductDTO(productId);
+    }
+
+    @Override
+    public List<ProductDTO> getAllProductByDeletedIsFalse() {
+        return productRepository.getAllProductByDeletedIsFalse();
+    }
+
+
     public void uploadAndSaveProductImage(MultipartFile avatarFile, Avatar avatar) {
         try {
             Map uploadResult = uploadService.uploadImage(avatarFile, uploadUtil.buildImageUploadParams(avatar));

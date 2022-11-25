@@ -13,5 +13,9 @@ public interface IProductService extends IGeneralService<Product> {
     Product saveWithAvatar (Product product, MultipartFile avatarFile);
     Optional<ProductDTO> getProductDTOById(Long id);
 
+    void deleteProductDTO(long productId);
+
+    List<ProductDTO> getAllProductByDeletedIsFalse();
+
 
 }

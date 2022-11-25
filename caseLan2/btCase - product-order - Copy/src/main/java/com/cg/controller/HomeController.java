@@ -96,19 +96,4 @@ public class HomeController {
         modelAndView.setViewName("/cart");
         return modelAndView;
     }
-//    @GetMapping("/home")
-//    public ModelAndView showHomePage() {
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("index");
-//
-//        return modelAndView;
-//    }
-
-//    @GetMapping("/login")
-//    public ModelAndView showLoginPage() {
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("login");
-//
-//        return modelAndView;
-//    }
 }
