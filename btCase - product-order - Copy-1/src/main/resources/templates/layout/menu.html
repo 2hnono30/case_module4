@@ -1,0 +1,111 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<th:block th:fragment="menu">
+    <div th:if="${user != null}">
+        <div th:if="${role.getCode().equalsIgnoreCase('user')}">
+            <li>
+                <a href="javascript: void(0);">
+                    <i class="la la-dashboard"></i>
+                    <span class="badge badge-info badge-pill float-right"></span>
+                    <span> Account </span>
+                </a>
+                <ul class="nav-second-level" aria-expanded="false">
+                    <li>
+                        <a href="#"> account information </a>
+                    </li>
+                </ul>
+            </li>
+        </div>
+        <div th:if="${role.getCode().equalsIgnoreCase('admin')}">
+            <li>
+                <a style="padding: 13px 20px;
+                        width: 100%;
+                        display: block;
+                        position: relative;"
+                        href="javascript: void(0);">
+                    <i class="la la-dashboard"></i>
+                    <span class="badge badge-info badge-pill float-right"></span>
+                    <span> Admin Page </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="nav-second-level" aria-expanded="false">
+                    <li>
+                        <a style="margin: 0px 25px;" href="/products"> Product </a>
+                    </li>
+                    <li>
+                        <a style="margin: 0px 25px;" href="/users"> Account </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a style="padding: 13px 20px;
+                        width: 100%;
+                        display: block;
+                        position: relative;"
+                        href="javascript: void(0);">
+                    <i class="mdi mdi-autorenew"></i>
+                    <span> Recover Account </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="nav-second-level" aria-expanded="false">
+                    <li>
+                        <a style="margin: 0px 25px;" href="/users/recover">Recover</a>
+                    </li>
+                </ul>
+            </li>
+        </div>
+    </div>
+    <span th:if="${user == null}">
+       <li>
+           <a style="padding: 13px 20px;
+                        width: 100%;
+                        display: block;
+                        position: relative;"
+              href="javascript: void(0);">
+               <i class="la la-dashboard"></i>
+               <span class="badge badge-info badge-pill float-right"></span>
+               <span> Product </span>
+           </a>
+           <ul class="nav-second-level" aria-expanded="false">
+               <li>
+                   <a href="#"> Product </a>
+               </li>
+           </ul>
+       </li>
+        <li>
+            <a style="padding: 13px 20px;
+                        width: 100%;
+                        display: block;
+                        position: relative;"
+               href="javascript: void(0);">
+                <i class="la la-dashboard"></i>
+                <span class="badge badge-info badge-pill float-right"></span>
+                <span> Account </span>
+            </a>
+            <ul class="nav-second-level" aria-expanded="false">
+                <li>
+                    <a href="#"> Account </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a style="padding: 13px 20px;
+                        width: 100%;
+                        display: block;
+                        position: relative;"
+               href="javascript: void(0);">
+                <i class="la la-dashboard"></i>
+                <span class="badge badge-info badge-pill float-right"></span>
+                <span> Account </span>
+            </a>
+            <ul class="nav-second-level" aria-expanded="false">
+                <li>
+                    <a href="#"> Product </a>
+                </li>
+                <li>
+                    <a href="#"> Account </a>
+                </li>
+            </ul>
+        </li>
+    </span>
+</th:block>

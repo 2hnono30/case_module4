@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Upvex Shop</title>
+    <th:block th:replace="/layout/head :: head"/>
+</head>
+<body data-layout="horizontal">
+
+<!-- Begin page -->
+<div id="wrapper">
+
+    <!-- Topbar Start -->
+    <div class="navbar-custom">
+        <ul class="list-unstyled topnav-menu float-right mb-0">
+
+            <li class="d-none d-sm-block">
+                <form class="app-search">
+                    <div class="app-search-box">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <div class="input-group-append">
+                                <button class="btn" type="submit">
+                                    <i class="fe-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </li>
+
+            <li class="dropdown notification-list">
+                <a class="nav-link dropdown-toggle waves-light waves-effect" data-toggle="dropdown" href="#"
+                   role="button" aria-haspopup="false" aria-expanded="false">
+                    <i class="fe-bell noti-icon"></i>
+                    <span class="badge badge-danger rounded-circle noti-icon-badge">5</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-lg">
+
+                    <!-- item-->
+                    <div class="dropdown-item noti-title">
+                        <h5 class="m-0 text-white">
+                                <span class="float-right">
+                                    <a href="" class="text-white">
+                                        <small>Clear All</small>
+                                    </a>
+                                </span>Notification
+                        </h5>
+                    </div>
+
+                    <div class="slimscroll noti-scroll">
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item active">
+                            <div class="notify-icon">
+                                <img src="/assets/images/users/user-1.jpg" class="img-fluid rounded-circle" alt="">
+                            </div>
+                            <p class="notify-details">Cristina Pride</p>
+                            <p class="text-muted mb-0 user-msg">
+                                <small>Hi, How are you? What about our next meeting</small>
+                            </p>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon bg-primary">
+                                <i class="mdi mdi-comment-account-outline"></i>
+                            </div>
+                            <p class="notify-details">Caleb Flakelar commented on Admin
+                                <small class="text-muted">1 min ago</small>
+                            </p>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon">
+                                <img src="/assets/images/users/user-4.jpg" class="img-fluid rounded-circle" alt="">
+                            </div>
+                            <p class="notify-details">Karen Robinson</p>
+                            <p class="text-muted mb-0 user-msg">
+                                <small>Wow ! this admin looks good and awesome design</small>
+                            </p>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon bg-warning">
+                                <i class="mdi mdi-account-plus"></i>
+                            </div>
+                            <p class="notify-details">New user registered.
+                                <small class="text-muted">5 hours ago</small>
+                            </p>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon bg-info">
+                                <i class="mdi mdi-comment-account-outline"></i>
+                            </div>
+                            <p class="notify-details">Caleb Flakelar commented on Admin
+                                <small class="text-muted">4 days ago</small>
+                            </p>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon bg-secondary">
+                                <i class="mdi mdi-heart text-danger"></i>
+                            </div>
+                            <p class="notify-details">Carlos Crouch liked
+                                <b>Admin</b>
+                                <small class="text-dark">13 days ago</small>
+                            </p>
+                        </a>
+                    </div>
+
+                    <!-- All-->
+                    <a href="javascript:void(0);"
+                       class="dropdown-item text-center text-primary notify-item notify-all">
+                        View all
+                        <i class="fi-arrow-right"></i>
+                    </a>
+
+                </div>
+            </li>
+
+            <li class="notification-list">
+                <a id="btnShowCart" class="nav-link dropdown-toggle waves-light waves-effect"
+                   role="button" >
+                    <i class="fas fa-cart-arrow-down"></i>
+                    <span class="badge badge-danger rounded-circle noti-icon-badge cart-quantity">0</span>
+                </a>
+            </li>
+
+            <li class="dropdown notification-list">
+                <th:block th:replace="layout/roleUser::roleUser"/>
+            </li>
+            <li class="dropdown notification-list">
+                <a href="javascript:void(0);" class="nav-link right-bar-toggle waves-effect waves-light">
+                    <i class="fe-settings noti-icon"></i>
+                </a>
+            </li>
+        </ul>
+
+        <!-- LOGO -->
+        <div class="logo-box">
+            <a href="/homepage" class="logo text-center">
+                    <span class="logo-lg">
+                        <img src="/assets/images/logo-light.png" alt="" height="24px">
+                        <!--                         <span class="logo-lg-text-light">Upvex</span>-->
+                    </span>
+                <span class="logo-sm">
+<!--                         <span class="logo-sm-text-dark">X</span>-->
+                        <img src="/assets/images/logo-sm.png" alt="" height="28px">
+                    </span>
+            </a>
+        </div>
+
+    </div>
+    <!-- end Topbar -->
+
+    <!-- ========== Left Sidebar Start ========== -->
+    <div class="left-side-menu">
+
+        <div class="slimscroll-menu">
+
+            <!--- Sidemenu -->
+            <div id="sidebar-menu">
+
+                <ul class="metismenu" id="side-menu" style="font-size: large;color: #8391a0;">
+
+                    <li class="menu-title">Navigation</li>
+
+                    <th:block th:replace="/layout/menu::menu"/>
+
+                </ul>
+
+            </div>
+
+            <!-- End Sidebar -->
+
+        </div>
+        <!-- Sidebar -left -->
+
+    </div>
+    <!-- Left Sidebar End -->
+
+    <!-- ============================================================== -->
+    <!-- Start Page body table -->
+    <!-- ============================================================== -->
+
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div>
+                        <div class="card-box">
+                            <header style="margin: auto;margin-bottom: -80px;height: 470px;">
+                                <div style="text-align: center;">
+<!--                                    <img src="https://insieutoc.vn/wp-content/uploads/2021/03/poster-quang-cao-giay-bitis-768x514.jpg"-->
+<!--                                         style="width: 95%; margin-bottom: 20px;height: 400px;">-->
+                                    <img src="/assets/images/638145545567632827_F-C1_1200x300.webp" alt="">
+                                </div>
+                            </header>
+                            <div class="" style="margin: -30px 0px;">
+                                <div class="row" id="product-list" style="margin-left: 35px;">
+
+                                </div>
+                            </div>
+                        </div> <!-- end card-box-->
+                    </div> <!-- end col -->
+                </div>
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+        <!-- Footer Start -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        2019 &copy; Upvex theme by <a href="">Coderthemes</a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-md-right footer-links d-none d-sm-block">
+                            <a href="javascript:void(0);">About Us</a>
+                            <a href="javascript:void(0);">Help</a>
+                            <a href="javascript:void(0);">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- end Footer -->
+
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
+
+
+</div>
+<!-- END wrapper -->
+
+<!-- Right Sidebar -->
+<div class="right-bar">
+    <div class="rightbar-title">
+        <a href="javascript:void(0);" class="right-bar-toggle float-right">
+            <i class="mdi mdi-close"></i>
+        </a>
+        <h5 class="m-0 text-white">Settings</h5>
+    </div>
+    <div class="slimscroll-menu">
+        <!-- User box -->
+        <div class="user-box">
+            <div class="user-img">
+                <img src="/assets/images/users/user-1.jpg" alt="user-img" title="Mat Helme"
+                     class="rounded-circle img-fluid">
+                <a href="javascript:void(0);" class="user-edit"><i class="mdi mdi-pencil"></i></a>
+            </div>
+
+            <h5><a href="javascript: void(0);">Marcia J. Melia</a></h5>
+            <p class="text-muted mb-0"><small>Product Owner</small></p>
+        </div>
+
+        <!-- Settings -->
+        <hr class="mt-0">
+        <div class="row">
+            <div class="col-6 text-center">
+                <h4 class="mb-1 mt-0">8,504</h4>
+                <p class="m-0">Balance</p>
+            </div>
+            <div class="col-6 text-center">
+                <h4 class="mb-1 mt-0">8,504</h4>
+                <p class="m-0">Balance</p>
+            </div>
+        </div>
+        <hr class="mb-0">
+
+        <div class="p-3">
+            <div class="custom-control custom-switch mb-2">
+                <input type="checkbox" class="custom-control-input" id="customSwitch1" checked="">
+                <label class="custom-control-label" for="customSwitch1">Notifications</label>
+            </div>
+            <div class="custom-control custom-switch mb-2">
+                <input type="checkbox" class="custom-control-input" id="customSwitch2">
+                <label class="custom-control-label" for="customSwitch2">API Access</label>
+            </div>
+            <div class="custom-control custom-switch mb-2">
+                <input type="checkbox" class="custom-control-input" id="customSwitch3" checked="">
+                <label class="custom-control-label" for="customSwitch3">Auto Updates</label>
+            </div>
+            <div class="custom-control custom-switch mb-2">
+                <input type="checkbox" class="custom-control-input" id="customSwitch4" checked="">
+                <label class="custom-control-label" for="customSwitch4">Online Status</label>
+            </div>
+        </div>
+
+        <!-- Timeline -->
+        <hr class="mt-0">
+        <h5 class="pl-3 pr-3">Messages <span class="float-right badge badge-pill badge-danger">25</span></h5>
+        <hr class="mb-0">
+        <div class="p-3">
+            <div class="inbox-widget">
+                <div class="inbox-item">
+                    <div class="inbox-item-img"><img src="/assets/images/users/user-2.jpg" class="rounded-circle"
+                                                     alt=""></div>
+                    <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Tomaslau</a></p>
+                    <p class="inbox-item-text">I've finished it! See you so...</p>
+                </div>
+                <div class="inbox-item">
+                    <div class="inbox-item-img"><img src="/assets/images/users/user-3.jpg" class="rounded-circle"
+                                                     alt=""></div>
+                    <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Stillnotdavid</a>
+                    </p>
+                    <p class="inbox-item-text">This theme is awesome!</p>
+                </div>
+                <div class="inbox-item">
+                    <div class="inbox-item-img"><img src="/assets/images/users/user-4.jpg" class="rounded-circle"
+                                                     alt=""></div>
+                    <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Kurafire</a></p>
+                    <p class="inbox-item-text">Nice to meet you</p>
+                </div>
+
+                <div class="inbox-item">
+                    <div class="inbox-item-img"><img src="/assets/images/users/user-5.jpg" class="rounded-circle"
+                                                     alt=""></div>
+                    <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Shahedk</a></p>
+                    <p class="inbox-item-text">Hey! there I'm available...</p>
+                </div>
+                <div class="inbox-item">
+                    <div class="inbox-item-img"><img src="/assets/images/users/user-6.jpg" class="rounded-circle"
+                                                     alt=""></div>
+                    <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Adhamdannaway</a>
+                    </p>
+                    <p class="inbox-item-text">This theme is awesome!</p>
+                </div>
+            </div> <!-- end inbox-widget -->
+        </div> <!-- end .p-3-->
+
+    </div> <!-- end slimscroll-menu-->
+</div>
+<!-- /Right-bar -->
+
+<!-- Right bar overlay-->
+<div class="rightbar-overlay"></div>
+
+
+<div id="panelCart" class="hide">
+    <button id="btnCloseCart" class="btn btn-danger">Close</button>
+
+    <div class="cart-items" style="color: snow"></div>
+
+    <div class="cart-checkout div-checkout">
+        <button id="btnCheckout" class="btn btn-success">
+            Checkout
+        </button>
+    </div>
+</div>
+
+<div class="loader hide"></div>
+
+<script src="/assets/js/App.page.js"></script>
+
+<th:block th:replace="/layout/script :: script"/>
+<script>
+
+    function getCartItems() {
+        $.ajax({
+            headers: {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            type: "GET",
+            url: "http://localhost:8080/api/cart-items"
+        })
+            .done((data) => {
+                if (data == null){
+                    $(".cart-quantity").text(0);
+                }else {
+                    $(".cart-quantity").text(data.length)
+                }
+                $("#panelCart .cart-items").empty();
+
+                $.each(data, (i, item) => {
+                    let str = AppPage.renderCartItem(item);
+                    $("#panelCart .cart-items").append(str);
+                })
+
+                handleAddQuantity();
+
+                handleMinusQuantity();
+
+                removeX();
+            })
+            .fail((jqXHR) => {
+                console.log((jqXHR));
+            })
+    }
+
+
+    $("#btnShowCart").on("click", () => {
+        getCartItems();
+
+        $("#panelCart").removeClass("hide").addClass("show");
+
+    })
+
+    $("#btnCloseCart").on("click", () => {
+        $("#panelCart").removeClass("show").addClass("hide");
+    })
+
+    function addQuantity(cartItemId) {
+        $.ajax({
+            headers: {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            type: "PATCH",
+            url: "http://localhost:8080/api/cart-items/add/" + cartItemId
+        })
+            .done((data) => {
+                let currentCartItemRow = $("#ci_" + cartItemId);
+                let newCartItemRow = AppPage.renderCartItem(data);
+
+                currentCartItemRow.replaceWith(newCartItemRow);
+
+                $(".cart-quantity").text(data.totalCartItemQuantity);
+
+                iziToast.success({
+                    title: 'OK',
+                    position: 'bottomLeft',
+                    timeout: 1500,
+                    message: 'Tăng số lượng sản phẩm thành công'
+                });
+
+                handleAddQuantity();
+
+                handleMinusQuantity();
+
+                removeX();
+            })
+            .fail((jqXHR) => {
+                console.log((jqXHR));
+            })
+    }
+
+    function removeCartItem(cartItemId) {
+        $.ajax({
+            headers: {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            type: "DELETE",
+            url: "http://localhost:8080/api/cart-items/delete/" + cartItemId
+        })
+            .done((data) => {
+                $("#ci_" + cartItemId).remove();
+
+                $(".cart-quantity").text(data.totalCartItemQuantity);
+
+                iziToast.success({
+                    title: 'OK',
+                    position: 'bottomLeft',
+                    timeout: 1500,
+                    message: 'Xóa sản phẩm khỏi giỏ thành công'
+                });
+
+            })
+            .fail((jqXHR) => {
+                console.log((jqXHR));
+            })
+    }
+
+    function minusQuantity(cartItemId) {
+        $.ajax({
+            headers: {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            type: "PATCH",
+            url: "http://localhost:8080/api/cart-items/minus/" + cartItemId
+        })
+            .done((data) => {
+                let currentCartItemRow = $("#ci_" + cartItemId);
+                let newCartItemRow = AppPage.renderCartItem(data);
+
+                currentCartItemRow.replaceWith(newCartItemRow);
+
+                $(".cart-quantity").text(data.totalCartItemQuantity);
+
+                iziToast.success({
+                    title: 'OK',
+                    position: 'bottomLeft',
+                    timeout: 1500,
+                    message: 'Giảm số lượng sản phẩm thành công'
+                });
+
+                handleAddQuantity();
+
+                handleMinusQuantity();
+
+                removeX();
+            })
+            .fail((jqXHR) => {
+                console.log((jqXHR));
+            })
+    }
+
+    function handleAddQuantity() {
+        let btnAddQuantity = $("#panelCart .cart-items .card-body button.add");
+
+        btnAddQuantity.off();
+
+
+        btnAddQuantity.on("click", function () {
+            let cartItemId = $(this).data("id");
+
+            addQuantity(cartItemId);
+        })
+    }
+
+    function handleMinusQuantity() {
+        let btnMinusQuantity = $("#panelCart .cart-items .card-body button.minus");
+
+        btnMinusQuantity.off();
+
+        btnMinusQuantity.on("click", function () {
+
+            let cartItemId = $(this).data("id");
+
+            let currentQuantity = +$(`#ci_${cartItemId} .card-body input.quantity`).val();
+
+            if (currentQuantity === 1) {
+                Swal.fire({
+                    text: "Bạn chắc chắn muốn bỏ sản phẩm này ra khỏi giỏ hàng?",
+                    icon: 'information',
+                    showCancelButton: true,
+                    cancelButtonText: "Hủy",
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'Đồng ý'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        removeCartItem(cartItemId);
+                    }
+                })
+            } else {
+                minusQuantity(cartItemId);
+            }
+        })
+    }
+
+    function getAllProducts() {
+        $.ajax({
+            headers: {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            type: "GET",
+            url: "http://localhost:8080/api/products"
+        })
+            .done((data) => {
+
+                $.each(data, (i, item) => {
+                    let str = AppPage.renderProductItem(item, item.avatar);
+                    $("#product-list").prepend(str);
+                })
+
+                handleAddCart();
+
+            })
+            .fail((jqXHR) => {
+                console.log((jqXHR));
+            })
+    }
+
+    function handleAddCart() {
+        $(".add-cart").on("click", function () {
+
+            $("#btnCloseCart").trigger("click");
+
+            let productId = $(this).data("id");
+
+            let cartItem = {
+                productId
+            }
+
+            $.ajax({
+                headers: {
+                    "accept": "application/json",
+                    "content-type": "application/json"
+                },
+                type: "POST",
+                url: "http://localhost:8080/api/carts/add",
+                data: JSON.stringify(cartItem)
+            })
+                .done((data) => {
+                    let {totalCartItemQuantity} = data;
+
+                    $(".cart-quantity").text(totalCartItemQuantity);
+
+                    iziToast.success({
+                        title: 'OK',
+                        position: 'bottomLeft',
+                        timeout: 1500,
+                        message: 'Thêm sản phẩm vào giỏ hàng thành công'
+                    });
+                })
+                .fail((jqXHR) => {
+                    if (jqXHR.status === 401) {
+                        App.IziToast.showErrorAlert("Vui Lòng Đăng Nhập Để Mua Hàng");
+                    } else {
+                        if (jqXHR.responseJSON.message) {
+                            let msg = jqXHR.responseJSON.message;
+                            App.IziToast.showErrorAlert(msg);
+                        } else if (jqXHR.responseJSON) {
+                            $.each(jqXHR.responseJSON, (key, item) => {
+                                App.IziToast.showErrorAlert(item);
+                            })
+                        }
+                    }
+                })
+        })
+    }
+
+    function checkout() {
+        $.ajax({
+            headers: {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            type: "POST",
+            url: "http://localhost:8080/api/carts/checkout"
+        })
+            .done(() => {
+
+                $("#panelCart .cart-items").empty();
+
+                iziToast.success({
+                    title: 'OK',
+                    position: 'bottomLeft',
+                    timeout: 1500,
+                    message: 'Đặt hàng thành công'
+                });
+                $(".cart-quantity").text(0);
+            })
+            .fail((jqXHR) => {
+                console.log((jqXHR));
+
+                iziToast.error({
+                    title: 'ERROR',
+                    position: 'bottomLeft',
+                    timeout: 2000,
+                    message: 'Đặt hàng không thành công'
+                });
+            })
+    }
+
+    function handleCheckout() {
+        $("#btnCheckout").on("click", () => {
+            checkout();
+        })
+    }
+
+    function removeX() {
+        $('.fa-times').on("click", function () {
+            // $(this).removeClass("show").addClass("hide");
+            let cartItemId = $(this).data("id");
+            Swal.fire({
+                text: "Bạn chắc chắn muốn bỏ sản phẩm này ra khỏi giỏ hàng?",
+                icon: 'information',
+                showCancelButton: true,
+                cancelButtonText: "Hủy",
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'Đồng ý'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    removeCartItem(cartItemId);
+                }
+            })
+        })
+    }
+
+    $(() => {
+        getCartItems();
+
+        getAllProducts();
+
+        handleCheckout();
+    })
+</script>
+</body>
+</html>

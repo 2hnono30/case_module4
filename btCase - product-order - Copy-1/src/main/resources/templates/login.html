@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="/assets/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+    <th:block th:replace="/layout/head :: head" />
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="/assets/css/style-login.css">
+</head>
+<body class="body-login">
+<div class="login">
+    <div class="modal-alert-danger hide"></div>
+    <form >
+        <h1>Login Form</h1>
+        <div class="form">
+            <input type="text" id="email" placeholder="Email">
+            <small></small>
+        </div>
+        <div class="form">
+            <input type="password" id="password" placeholder="Password">
+            <small></small>
+        </div>
+        <div class="btn-login">
+            <button type="button" id="btnLogin"class="btn-submit">Login</button>
+        </div>
+        <h3>Not a member? <a href="/register" >Register</a></h3>
+    </form>
+</div>
+
+<th:block th:replace="/layout/script :: script" />
+<!--<script src="/assets/js/main.js"></script>-->
+<script>
+    let page = {
+        url : {
+            doLogin : App.BASER_URL + "auth/" + "login"
+        },
+        elements : {
+            locationRegion : {}
+        },
+        loadData : {},
+        commands : {},
+        dialogs : {
+            elements: {},
+            commands: {}
+        },
+        initializeControllEvents : {}
+    }
+
+    let user = new User();
+
+    page.elements.password = $('#password');
+    page.elements.email = $('#email');
+    page.elements.btnLogin = $('#btnLogin');
+
+    page.elements.btnLogin.on('click',function (){
+        page.commands.doLogin();
+    })
+
+    page.commands.doLogin = () => {
+        user.email = page.elements.email.val();
+        user.password = page.elements.password.val();
+
+        $.ajax({
+            "headers" : {
+                "accept" : "application/json",
+                "content-type" : "application/json"
+            },
+            "type" : "POST",
+            "url" : page.url.doLogin,
+            "data" : JSON.stringify(user)
+        })
+        .done((data) => {
+            user = data;
+            console.log(user);
+            App.SweetAlert.showAlertSuccess("Đăng nhập thành công ^^");
+            if (user.roles[0].authority == "ADMIN"){
+                setTimeout(() => {
+                    window.location.href = "/adminpage";
+                }, 2000)
+            }else {
+                setTimeout(() => {
+                    window.location.href = "/homepage";
+                }, 2000)
+            }
+        })
+        .fail((jqXHR) => {
+            console.log(jqXHR);
+            App.IziToast.showErrorAlert("Thông Tin Đăng Nhập Không Chính Xác !!!");
+        })
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>Upvex - Responsive Admin Page</title>
+    <th:block th:replace="/layout/head::head"/>
+</head>
+
+<body>
+
+<!-- Begin page -->
+<div id="wrapper">
+
+    <!-- Topbar Start -->
+    <div class="navbar-custom">
+        <ul class="list-unstyled topnav-menu float-right mb-0">
+
+            <li class="d-none d-sm-block">
+                <form class="app-search">
+                    <div class="app-search-box">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <div class="input-group-append">
+                                <button class="btn" type="submit">
+                                    <i class="fe-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </li>
+
+            <li class="dropdown notification-list">
+                <a class="nav-link dropdown-toggle waves-light waves-effect" data-toggle="dropdown" href="#"
+                   role="button" aria-haspopup="false" aria-expanded="false">
+                    <i class="fe-bell noti-icon"></i>
+                    <span class="badge badge-danger rounded-circle noti-icon-badge">5</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-lg">
+
+                    <!-- item-->
+                    <div class="dropdown-item noti-title">
+                        <h5 class="m-0 text-white">
+                                <span class="float-right">
+                                    <a href="" class="text-white">
+                                        <small>Clear All</small>
+                                    </a>
+                                </span>Notification
+                        </h5>
+                    </div>
+
+                    <div class="slimscroll noti-scroll">
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item active">
+                            <div class="notify-icon">
+                                <img src="/assets/images/users/user-1.jpg" class="img-fluid rounded-circle" alt="">
+                            </div>
+                            <p class="notify-details">Cristina Pride</p>
+                            <p class="text-muted mb-0 user-msg">
+                                <small>Hi, How are you? What about our next meeting</small>
+                            </p>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon bg-primary">
+                                <i class="mdi mdi-comment-account-outline"></i>
+                            </div>
+                            <p class="notify-details">Caleb Flakelar commented on Admin
+                                <small class="text-muted">1 min ago</small>
+                            </p>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon">
+                                <img src="/assets/images/users/user-4.jpg" class="img-fluid rounded-circle" alt="">
+                            </div>
+                            <p class="notify-details">Karen Robinson</p>
+                            <p class="text-muted mb-0 user-msg">
+                                <small>Wow ! this admin looks good and awesome design</small>
+                            </p>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon bg-warning">
+                                <i class="mdi mdi-account-plus"></i>
+                            </div>
+                            <p class="notify-details">New user registered.
+                                <small class="text-muted">5 hours ago</small>
+                            </p>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon bg-info">
+                                <i class="mdi mdi-comment-account-outline"></i>
+                            </div>
+                            <p class="notify-details">Caleb Flakelar commented on Admin
+                                <small class="text-muted">4 days ago</small>
+                            </p>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon bg-secondary">
+                                <i class="mdi mdi-heart text-danger"></i>
+                            </div>
+                            <p class="notify-details">Carlos Crouch liked
+                                <b>Admin</b>
+                                <small class="text-dark">13 days ago</small>
+                            </p>
+                        </a>
+                    </div>
+
+                    <!-- All-->
+                    <a href="javascript:void(0);"
+                       class="dropdown-item text-center text-primary notify-item notify-all">
+                        View all
+                        <i class="fi-arrow-right"></i>
+                    </a>
+
+                </div>
+            </li>
+            
+            <li class="dropdown notification-list">
+                <th:block th:replace="layout/roleUser::roleUser"/>
+            </li>
+            <li class="dropdown notification-list">
+                <a href="javascript:void(0);" class="nav-link right-bar-toggle waves-effect waves-light">
+                    <i class="fe-settings noti-icon"></i>
+                </a>
+            </li>
+        </ul>
+
+        <!-- LOGO -->
+        <div class="logo-box">
+            <a href="/homepage" class="logo text-center">
+                    <span class="logo-lg">
+                        <img src="/assets/images/logo-light.png" alt="" height="24">
+                        <!-- <span class="logo-lg-text-light">Upvex</span> -->
+                    </span>
+                <span class="logo-sm">
+                        <!-- <span class="logo-sm-text-dark">X</span> -->
+                        <img src="/assets/images/logo-sm.png" alt="" height="28">
+                    </span>
+            </a>
+        </div>
+
+    </div>
+    <!-- end Topbar -->
+
+    <!-- ========== Left Sidebar Start ========== -->
+    <div class="left-side-menu">
+
+        <div class="slimscroll-menu">
+
+            <!--- Sidemenu -->
+            <div id="sidebar-menu">
+
+                <ul class="metismenu" id="side-menu"  style="font-size: large;color: #8391a0;">
+
+                    <li class="menu-title">Navigation</li>
+
+                    <th:block th:replace="/layout/menu::menu"/>
+
+                </ul>
+
+            </div>
+            <!-- End Sidebar -->
+
+            <div class="clearfix"></div>
+
+        </div>
+        <!-- Sidebar -left -->
+
+    </div>
+    <!-- Left Sidebar End -->
+
+    <!-- ============================================================== -->
+    <!-- Start Page body table -->
+    <!-- ============================================================== -->
+
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Upvex</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Admin-Page</a>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Products</a></li>
+                                </ol>
+                            </div>
+                            <h4 class="page-title">Products</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card-box">
+                            <header style="width: 93.5%;margin: auto;text-align: center;">
+                                <div class="row" style="background-color: #383846;">
+                                    <div class="col-sm-5">
+                                        <h1>List of products</h1>
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <button id="btnShowCreateModal" class="btn btn-outline">
+                                            <i class="fas fa-plus"></i>
+                                            <span>Add New Product</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </header>
+
+                            <div class="table-responsive">
+                                <input type="hidden" id="currentRow">
+                                <table id="tbProduct" class="table table-borderless table-hover table-centered  table-nowrap m-0">
+
+                                    <thead class="thead-light">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Avatar</th>
+                                        <th>Name Product</th>
+                                        <th class="text-end">Amount</th>
+                                        <th class="text-end">Price(VND)</th>
+                                        <th>Describe</th>
+                                        <th colspan="2">Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </div> <!-- end .table-responsive-->
+                        </div> <!-- end card-box-->
+                    </div> <!-- end col -->
+                </div>
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+        <!-- Footer Start -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        2019 &copy; Upvex theme by <a href="">Coderthemes</a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-md-right footer-links d-none d-sm-block">
+                            <a href="javascript:void(0);">About Us</a>
+                            <a href="javascript:void(0);">Help</a>
+                            <a href="javascript:void(0);">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- end Footer -->
+
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
+
+
+</div>
+<!-- END wrapper -->
+
+<!-- Right Sidebar -->
+<div class="right-bar">
+    <div class="rightbar-title">
+        <a href="javascript:void(0);" class="right-bar-toggle float-right">
+            <i class="mdi mdi-close"></i>
+        </a>
+        <h5 class="m-0 text-white">Settings</h5>
+    </div>
+    <div class="slimscroll-menu">
+        <!-- User box -->
+        <div class="user-box">
+            <div class="user-img">
+                <img src="/assets/images/users/user-1.jpg" alt="user-img" title="Mat Helme"
+                     class="rounded-circle img-fluid">
+                <a href="javascript:void(0);" class="user-edit"><i class="mdi mdi-pencil"></i></a>
+            </div>
+
+            <h5><a href="javascript: void(0);">Marcia J. Melia</a> </h5>
+            <p class="text-muted mb-0"><small>Product Owner</small></p>
+        </div>
+
+        <!-- Settings -->
+        <hr class="mt-0">
+        <div class="row">
+            <div class="col-6 text-center">
+                <h4 class="mb-1 mt-0">8,504</h4>
+                <p class="m-0">Balance</p>
+            </div>
+            <div class="col-6 text-center">
+                <h4 class="mb-1 mt-0">8,504</h4>
+                <p class="m-0">Balance</p>
+            </div>
+        </div>
+        <hr class="mb-0">
+
+        <div class="p-3">
+            <div class="custom-control custom-switch mb-2">
+                <input type="checkbox" class="custom-control-input" id="customSwitch1" checked="">
+                <label class="custom-control-label" for="customSwitch1">Notifications</label>
+            </div>
+            <div class="custom-control custom-switch mb-2">
+                <input type="checkbox" class="custom-control-input" id="customSwitch2">
+                <label class="custom-control-label" for="customSwitch2">API Access</label>
+            </div>
+            <div class="custom-control custom-switch mb-2">
+                <input type="checkbox" class="custom-control-input" id="customSwitch3" checked="">
+                <label class="custom-control-label" for="customSwitch3">Auto Updates</label>
+            </div>
+            <div class="custom-control custom-switch mb-2">
+                <input type="checkbox" class="custom-control-input" id="customSwitch4" checked="">
+                <label class="custom-control-label" for="customSwitch4">Online Status</label>
+            </div>
+        </div>
+
+        <!-- Timeline -->
+        <hr class="mt-0">
+        <h5 class="pl-3 pr-3">Messages <span class="float-right badge badge-pill badge-danger">25</span></h5>
+        <hr class="mb-0">
+        <div class="p-3">
+            <div class="inbox-widget">
+                <div class="inbox-item">
+                    <div class="inbox-item-img"><img src="/assets/images/users/user-2.jpg" class="rounded-circle"
+                                                     alt=""></div>
+                    <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Tomaslau</a></p>
+                    <p class="inbox-item-text">I've finished it! See you so...</p>
+                </div>
+                <div class="inbox-item">
+                    <div class="inbox-item-img"><img src="/assets/images/users/user-3.jpg" class="rounded-circle"
+                                                     alt=""></div>
+                    <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Stillnotdavid</a>
+                    </p>
+                    <p class="inbox-item-text">This theme is awesome!</p>
+                </div>
+                <div class="inbox-item">
+                    <div class="inbox-item-img"><img src="/assets/images/users/user-4.jpg" class="rounded-circle"
+                                                     alt=""></div>
+                    <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Kurafire</a></p>
+                    <p class="inbox-item-text">Nice to meet you</p>
+                </div>
+
+                <div class="inbox-item">
+                    <div class="inbox-item-img"><img src="/assets/images/users/user-5.jpg" class="rounded-circle"
+                                                     alt=""></div>
+                    <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Shahedk</a></p>
+                    <p class="inbox-item-text">Hey! there I'm available...</p>
+                </div>
+                <div class="inbox-item">
+                    <div class="inbox-item-img"><img src="/assets/images/users/user-6.jpg" class="rounded-circle"
+                                                     alt=""></div>
+                    <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Adhamdannaway</a>
+                    </p>
+                    <p class="inbox-item-text">This theme is awesome!</p>
+                </div>
+            </div> <!-- end inbox-widget -->
+        </div> <!-- end .p-3-->
+
+    </div> <!-- end slimscroll-menu-->
+</div>
+<!-- /Right-bar -->
+
+<!-- Right bar overlay-->
+<div class="rightbar-overlay"></div>
+
+<div class="loader hide"></div>
+
+<th:block th:replace="/product/modalCreate :: modalCreate"/>
+
+<th:block th:replace="/product/modalUpdate :: modalUpdate"/>
+
+<th:block th:replace="/layout/script::script"/>
+<script>
+
+    let page = {
+        urls: {
+            getAllProducts: App.BASE_URL_PRODUCT,
+            getProductById: App.BASE_URL_PRODUCT,
+            create: App.BASE_URL_PRODUCT + "/create",
+            update: App.BASE_URL_PRODUCT + "/update",
+            delete: App.BASE_URL_PRODUCT + "/delete/"
+        },
+        elements: {},
+        loadData: {},
+        commands: {},
+        dialogs: {
+            elements: {},
+            loadData: {},
+            commands: {},
+        },
+        initializeEventControl: {}
+    }
+
+    let avatar = new Avatar();
+    let product = new Product();
+
+    page.elements.loader = $(".loader");
+
+    page.elements.tbProduct = $("#tbProduct tbody");
+    page.elements.btnShowCreateModal = $("#btnShowCreateModal");
+    page.elements.modalCreate = $("#modalCreate");
+    page.elements.modalUpdate = $("#modalUpdate");
+
+    page.dialogs.elements.frmCreate = $("#frmCreate");
+    page.dialogs.elements.nameCre = $("#nameCre");
+    page.dialogs.elements.amountCre = $("#amountCre");
+    page.dialogs.elements.priceCre = $("#priceCre");
+    page.dialogs.elements.descriptionCre = $("#descriptionCre");
+    page.dialogs.elements.btnCreate = $("#btnCreate");
+
+    page.dialogs.elements.frmUpdate = $("#frmUpdate");
+    page.dialogs.elements.nameUp = $("#nameUp");
+    page.dialogs.elements.amountUp = $("#amountUp");
+    page.dialogs.elements.priceUp = $("#priceUp");
+    page.dialogs.elements.descriptionUp = $("#descriptionUp");
+    page.dialogs.elements.btnUpdate = $("#btnUpdate");
+
+    page.dialogs.elements.wrapper = $("section .wrapper");
+    page.dialogs.elements.imageFile = $("#imageFile");
+    page.dialogs.elements.wrapperContent = $("section .wrapper .content");
+    page.dialogs.elements.imagePreview = $("section .image-preview canvas");
+    page.dialogs.elements.canvas = $("#canvas");
+    page.dialogs.elements.context = page.dialogs.elements.canvas[0].getContext('2d');
+    page.dialogs.elements.imagePreview.css("display", "none");
+    page.dialogs.elements.divImagePreview = $("#frmCreate div.image-preview,#frmCreate div.file-name");
+    page.dialogs.elements.btnClearImagePreview = $(".clear-image-preview i");
+
+    page.dialogs.elements.wrapperUp = $("#frmUpdate section .wrapper");
+    page.dialogs.elements.imageFileUp = $("#frmUpdate #imageFileUp");
+    page.dialogs.elements.wrapperContentUp = $("#frmUpdate section .wrapper .content");
+    page.dialogs.elements.imagePreviewUp = $("#frmUpdate section .image-preview canvas");
+    page.dialogs.elements.canvasUp = $("#canvasUp");
+    page.dialogs.elements.contextUp = page.dialogs.elements.canvasUp[0].getContext('2d');
+    page.dialogs.elements.imagePreviewUp.css("display", "none");
+    page.dialogs.elements.divImagePreviewUp = $("#frmUpdate div.image-preview, #frmUpdate div.file-name");
+    page.dialogs.elements.btnClearImagePreviewUp = $("#frmUpdate .clear-image-preview i");
+
+
+    page.dialogs.elements.btnCreate.on("click", () => {
+        page.dialogs.elements.frmCreate.trigger("submit");
+    })
+
+    page.dialogs.elements.btnUpdate.on("click", () => {
+        page.dialogs.elements.frmUpdate.trigger("submit");
+    })
+
+    page.elements.btnShowCreateModal.on("click", () => {
+        page.elements.modalCreate.modal("show");
+    });
+
+    page.commands.handleOpenConfirmDelete = () => {
+        $(".delete").on("click", function () {
+
+            let productId = $(this).data("id");
+            ;
+
+            App.SweetAlert.showSuspendedConfirmDialog()
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        page.dialogs.commands.deactivateProduct(productId);
+                    }
+                });
+        });
+    }
+    page.dialogs.commands.deactivateProduct = (productId) => {
+        page.elements.loader.removeClass("hide");
+        $.ajax({
+            headers: {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            type: "DELETE",
+            url: page.urls.delete + productId
+        })
+            .done(() => {
+                App.SweetAlert.showAlertSuccess(App.AlertMessageVi.SUCCESS_DEACTIVATE);
+                $("#tr_" + productId).remove();
+            })
+            .fail((jqXHR) => {
+                console.log("jqXHR deactivateCustomer ======");
+                console.log(jqXHR);
+
+                if (jqXHR.status === 401) {
+                    App.IziToast.showErrorAlert(App.AlertMessageVi.ERROR_401);
+                }
+
+                if (jqXHR.status === 403) {
+                    App.IziToast.showErrorAlert(App.AlertMessageVi.ERROR_403);
+                } else {
+                    App.AlertMessageVi.ERROR_400;
+                }
+            }).always(function () {
+            page.elements.loader.addClass("hide");
+        });
+    }
+
+    page.commands.handleOpenModalUpdate = () => {
+        $(".edit").on("click", function () {
+            let productId = $(this).data("id");
+            let avatarFileName = $(this).data("avatar-file-name");
+            let avatarFolder = $(this).data("avatar-folder");
+            let avatarUrl = App.BASE_CLOUDIARY_SERVER + "/" + App.SCALE_W320_H320_Q100 + "/" + avatarFolder + "/" + avatarFileName;
+
+            page.commands.getProductById(productId).then(() => {
+                page.dialogs.elements.nameUp.val(product.name);
+                page.dialogs.elements.amountUp.val(product.amount);
+                page.dialogs.elements.priceUp.val(product.price);
+                page.dialogs.elements.descriptionUp.val(product.description);
+                page.dialogs.commands.loadImageToCanvasUp(null, "", avatarUrl);
+
+                page.elements.modalUpdate.modal("show");
+            })
+                .catch(() => {
+                    console.log("get edit fail");
+                    App.SweetAlert.showAlertError(App.AlertMessageVi.ERROR_404);
+                });
+        })
+    }
+
+    page.commands.getAllProducts = () => {
+        $.ajax({
+            headers: {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            type: "GET",
+            url: page.urls.getAllProducts
+        })
+            .done((data) => {
+                console.log(data);
+                data.map(item => {
+                    avatar = item.avatar
+                    page.elements.tbProduct.prepend(App.renderRowProduct(item, avatar));
+                });
+                page.commands.initTooltip();
+                page.commands.handleOpenModalUpdate();
+                page.commands.handleOpenConfirmDelete();
+            })
+            .fail((jqXHR) => {
+                App.SweetAlert.showAlertError(App.AlertMessageVi.ERROR_500);
+            })
+    }
+
+    page.commands.getProductById = (productId) => {
+        return $.ajax({
+            headers: {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            type: "GET",
+            url: page.urls.getProductById + "/" + productId
+        })
+            .done((data) => {
+                product = data;
+            })
+            .fail((jqXHR) => {
+                App.SweetAlert.showAlertError(App.AlertMessageVi.ERROR_500);
+            });
+    }
+
+    //-Load image Create-//
+    page.dialogs.commands.loadImageToCanvas = (imageFile) => {
+        page.dialogs.elements.imagePreview.css("display", "");
+        page.dialogs.elements.wrapper.addClass("active");
+        page.dialogs.elements.wrapperContent.css("opacity", 0);
+
+        let imageObj = new Image();
+
+        imageObj.onload = function () {
+            page.dialogs.elements.context.canvas.width = imageObj.width;
+            page.dialogs.elements.context.canvas.height = imageObj.height;
+            page.dialogs.elements.context.drawImage(imageObj, 0, 0, imageObj.width, imageObj.height);
+        };
+
+        imageObj.src = URL.createObjectURL(imageFile)
+    }
+
+    page.dialogs.commands.changeImagePreview = () => {
+        let imageFile = page.dialogs.elements.imageFile[0].files[0];
+
+        if (imageFile) {
+            let reader = new FileReader();
+
+            reader.readAsDataURL(imageFile);
+
+            reader.onload = function (e) {
+                if (e.target.readyState === FileReader.DONE) {
+                    page.dialogs.commands.loadImageToCanvas(imageFile);
+                }
+            }
+        } else {
+            page.dialogs.elements.clearImagePreview();
+        }
+    }
+
+    page.dialogs.elements.clearImagePreview = () => {
+        page.dialogs.elements.imageFile.val("");
+        page.dialogs.elements.imagePreview.css("display", "none");
+        page.dialogs.elements.wrapper.removeClass("active");
+        page.dialogs.elements.wrapperContent.css("opacity", 1);
+    }
+
+    // -- //
+
+    //-Load image Update-//
+    page.dialogs.commands.loadImageToCanvasUp = (imageFile, fileType, imageUrl) => {
+        page.dialogs.elements.imagePreviewUp.css("display", "");
+        page.dialogs.elements.wrapperUp.addClass("active");
+        page.dialogs.elements.wrapperContentUp.css("opacity", 0);
+
+        let imageObj = new Image();
+
+        imageObj.onload = function () {
+            page.dialogs.elements.contextUp.canvas.width = imageObj.width;
+            page.dialogs.elements.contextUp.canvas.height = imageObj.height;
+            page.dialogs.elements.contextUp.drawImage(imageObj, 0, 0, imageObj.width, imageObj.height);
+        };
+        if (fileType === "BINARY") {
+            imageObj.src = URL.createObjectURL(imageFile);
+        } else {
+            imageObj.src = imageUrl;
+        }
+    }
+
+    page.dialogs.commands.changeImagePreviewUp = () => {
+        let imageFile = page.dialogs.elements.imageFileUp[0].files[0];
+
+        if (imageFile) {
+            let reader = new FileReader();
+
+            reader.readAsDataURL(imageFile);
+
+            reader.onload = function (e) {
+                if (e.target.readyState === FileReader.DONE) {
+                    page.dialogs.commands.loadImageToCanvasUp(imageFile, "BINARY", null);
+                }
+            }
+        } else {
+            page.dialogs.elements.clearImagePreviewUp();
+        }
+    }
+
+    page.dialogs.elements.clearImagePreviewUp = () => {
+        page.dialogs.elements.imageFileUp.val("");
+        page.dialogs.elements.imagePreviewUp.css("display", "none");
+        page.dialogs.elements.wrapperUp.removeClass("active");
+        page.dialogs.elements.wrapperContentUp.css("opacity", 1);
+    }
+    // -- //
+
+
+    //-- Create Product --//
+
+    page.commands.createProduct = () => {
+
+        page.elements.loader.removeClass("hide");
+        page.dialogs.elements.btnCreate.prop('disabled', true);
+
+        let formData = new FormData();
+        formData.append("name", page.dialogs.elements.nameCre.val().toString());
+        formData.append("amount", page.dialogs.elements.amountCre.val().toString());
+        formData.append("price", page.dialogs.elements.priceCre.val().toString());
+        formData.append("description", page.dialogs.elements.descriptionCre.val().toString());
+        formData.append("file", page.dialogs.elements.imageFile[0].files[0]);
+        $.ajax({
+            type: "POST",
+            contentType: false,
+            cache: false,
+            processData: false,
+            url: page.urls.create,
+            data: formData
+        }).done((data) => {
+            page.elements.tbProduct.prepend(App.renderRowProduct(data, data.avatar));
+            page.commands.initTooltip();
+            page.commands.handleOpenModalUpdate();
+            page.commands.handleOpenConfirmDelete();
+            page.elements.modalCreate.modal('hide');
+            App.SweetAlert.showAlertSuccess(App.AlertMessageVi.SUCCESS_CREATED);
+        }).fail((jqXHR) => {
+            App.SweetAlert.showAlertError(App.AlertMessageVi.ERROR_IMAGE);
+        }).always(function () {
+            page.elements.loader.addClass("hide");
+            page.dialogs.elements.btnCreate.prop('disabled', false);
+        });
+    }
+
+    //-- Update Product --//
+
+    page.commands.updateProduct = () => {
+        page.elements.loader.removeClass("hide");
+        page.dialogs.elements.btnUpdate.prop('disabled', true);
+
+        let formData = new FormData();
+        formData.append("id", product.id.toString());
+        formData.append("name", page.dialogs.elements.nameUp.val().toString());
+        formData.append("amount", page.dialogs.elements.amountUp.val().toString());
+        formData.append("price", page.dialogs.elements.priceUp.val().toString());
+        formData.append("description", page.dialogs.elements.descriptionUp.val().toString());
+        formData.append("file", page.dialogs.elements.imageFileUp[0].files[0]);
+
+        $.ajax({
+            type: "POST",
+            contentType: false,
+            cache: false,
+            processData: false,
+            url: page.urls.update,
+            data: formData
+        }).done((data) => {
+            let currentRow = $("#tr_" + data.id)
+            currentRow.replaceWith(App.renderRowProduct(data, data.avatar));
+            page.commands.initTooltip();
+            page.commands.handleOpenModalUpdate();
+            page.commands.handleOpenConfirmDelete();
+            App.SweetAlert.showAlertSuccess(App.AlertMessageVi.SUCCESS_UPDATED);
+            page.elements.modalUpdate.modal('hide');
+        }).fail((err) => {
+            App.SweetAlert.showAlertError(App.AlertMessageVi.ERROR_400);
+        }).always(function () {
+            page.elements.loader.addClass("hide");
+            page.dialogs.elements.btnUpdate.prop('disabled', false);
+        });
+    }
+
+    // -- -- //
+
+    page.dialogs.elements.frmCreate.validate({
+        rules: {
+            nameCre: {
+                required: true,
+                minlength: 5,
+                maxlength: 50
+            },
+            amountCre: {
+                required: true,
+                min: 20,
+            },
+            priceCre: {
+                required: true,
+                min: 100000,
+            }
+        },
+        messages: {
+            nameCre: {
+                required: "Vui lòng không để trống tên sản phẩm",
+                minlength: "Họ tên tối thiểu 5 ký tự",
+                maxlength: "Họ tên tối đa 50 ký tự"
+            },
+            amountCre: {
+                required: "Vui lòng không để trống số lượng sản phẩm",
+                min: "Số lượng sản phẩm tối thiểu là {0}",
+            },
+            priceCre: {
+                required: "Vui lòng không để trống giá sản phẩm",
+                min: "Số tiền mặt hàng tối thiểu là {0}",
+            },
+        },
+        errorLabelContainer: "#modalCreate .modal-alert-danger",
+        errorPlacement: function (error, element) {
+            error.appendTo("#modalCreate .modal-alert-danger");
+        },
+        showErrors: function (errorMap, errorList) {
+            if (this.numberOfInvalids() > 0) {
+                $("#modalCreate .modal-alert-danger").removeClass("hide").addClass("show");
+            } else {
+                $("#modalCreate .modal-alert-danger").removeClass("show").addClass("hide").empty();
+                $("#frmCreate input.error").removeClass("error");
+            }
+            this.defaultShowErrors();
+        },
+        submitHandler: function () {
+            page.commands.createProduct();
+        }
+    })
+
+    page.dialogs.elements.frmUpdate.validate({
+        rules: {
+            nameUp: {
+                required: true,
+                minlength: 5,
+                maxlength: 50
+            },
+            amountUp: {
+                required: true,
+                min: 20,
+            },
+            priceUp: {
+                required: true,
+                min: 100000,
+            }
+        },
+        messages: {
+            nameUp: {
+                required: "Vui lòng nhập tên đầy đủ",
+                minlength: "Họ tên tối thiểu 5 ký tự",
+                maxlength: "Họ tên tối đa 35 ký tự"
+            },
+            amountUp: {
+                required: "Vui lòng không để trống số lượng sản phẩm",
+                min: "Số lượng sản phẩm tối thiểu là {0}",
+            },
+            priceUp: {
+                required: "Vui lòng không để trống giá sản phẩm",
+                min: "Số tiền mặt hàng tối thiểu là {0}",
+            },
+        },
+        errorLabelContainer: "#modalUpdate .modal-alert-danger",
+        errorPlacement: function (error, element) {
+            error.appendTo("#modalCreate .modal-alert-danger");
+        },
+        showErrors: function (errorMap, errorList) {
+            if (this.numberOfInvalids() > 0) {
+                $("#modalCreate .modal-alert-danger").removeClass("hide").addClass("show");
+            } else {
+                $("#modalCreate .modal-alert-danger").removeClass("show").addClass("hide").empty();
+                $("#frmCreate input.error").removeClass("error");
+            }
+            this.defaultShowErrors();
+        },
+        submitHandler: function () {
+            page.commands.updateProduct();
+        }
+    })
+
+
+    page.commands.initTooltip = () => {
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    }
+
+    page.elements.modalCreate.on("hidden.bs.modal", function () {
+        page.dialogs.elements.frmCreate[0].reset();
+        page.dialogs.elements.btnClearImagePreview.trigger("click");
+    });
+    page.elements.modalUpdate.on("hidden.bs.modal", function () {
+        page.dialogs.elements.frmUpdate[0].reset();
+        page.dialogs.elements.btnClearImagePreviewUp.trigger("click");
+    });
+
+    page.initializeEventControl = () => {
+
+        //page.dialogs.elements.divImagePreview = $("div.image-preview, div.file-name");
+        page.dialogs.elements.divImagePreview.on("click", function () {
+            page.dialogs.elements.imageFile.trigger("click");
+        });
+
+        page.dialogs.elements.imageFile.on("change", function () {
+            page.dialogs.commands.changeImagePreview();
+        });
+
+        page.dialogs.elements.btnClearImagePreview.on("click", function () {
+            page.dialogs.elements.clearImagePreview();
+        });
+
+        //page.dialogs.elements.divImagePreviewUp = $("#frmUpdate div.image-preview, #frmUpdate div.file-name");
+        page.dialogs.elements.divImagePreviewUp.on("click", function () {
+            page.dialogs.elements.imageFileUp.trigger("click");
+        });
+
+        page.dialogs.elements.imageFileUp.on("change", function () {
+            page.dialogs.commands.changeImagePreviewUp();
+        });
+
+        page.dialogs.elements.btnClearImagePreviewUp.on("click", function () {
+            page.dialogs.elements.clearImagePreviewUp();
+        });
+
+    }
+
+    page.loadData = () => {
+        page.commands.getAllProducts();
+    }
+
+    $(() => {
+        page.loadData();
+
+        page.initializeEventControl();
+    })
+
+</script>
+</body>
+
+</html>

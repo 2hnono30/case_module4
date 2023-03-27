@@ -1,0 +1,43 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<th:block th:fragment="roleUser">
+    <div th:switch="${user}">
+        <div th:case="null">
+            <a href="/login" class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light">
+                <i class="icon-login"> Login</i>
+            </a>
+        </div>
+        <div class="btn-group" style="margin: auto 0;" th:case="*">
+            <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect waves-light"
+               data-toggle="dropdown" href="#" role="button" aria-haspopup="false"
+               aria-expanded="false">
+                <img src="/assets/images/users/user-1.jpg" alt="user-image" class="rounded-circle">
+                <span class="pro-user-name ml-1" th:text="${user.fullName}">
+                    <i class="mdi mdi-chevron-down"></i>
+                </span>
+            </a>
+            <ul class="dropdown-menu">
+                <div class="dropdown-item noti-title">
+                    <h5 class="m-0 text-white">
+                        Welcome
+                        <span th:text="${user.fullName}"/> !
+                    </h5>
+                </div>
+                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                    <i class="fe-user"></i>
+                    <span>My Account</span>
+                </a>
+                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                    <i class="fe-settings"></i>
+                    <span>Settings</span>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a href="/logout" class="dropdown-item notify-item">
+                    <i class="fe-log-out"></i>
+                    <span>Logout</span>
+                </a>
+            </ul>
+        </div>
+    </div>
+</th:block>
+

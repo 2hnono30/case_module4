@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>Upvex - Responsive Account Page</title>
+    <th:block th:replace="/layout/head::head"/>
+</head>
+
+<body>
+
+<!-- Begin page -->
+<div id="wrapper">
+
+    <!-- Topbar Start -->
+    <div class="navbar-custom">
+        <ul class="list-unstyled topnav-menu float-right mb-0">
+
+            <li class="d-none d-sm-block">
+                <form class="app-search">
+                    <div class="app-search-box">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <div class="input-group-append">
+                                <button class="btn" type="submit">
+                                    <i class="fe-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </li>
+
+            <li class="dropdown notification-list">
+                <a class="nav-link dropdown-toggle waves-light waves-effect" data-toggle="dropdown" href="#"
+                   role="button" aria-haspopup="false" aria-expanded="false">
+                    <i class="fe-bell noti-icon"></i>
+                    <span class="badge badge-danger rounded-circle noti-icon-badge">5</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-lg">
+
+                    <!-- item-->
+                    <div class="dropdown-item noti-title">
+                        <h5 class="m-0 text-white">
+                                <span class="float-right">
+                                    <a href="" class="text-white">
+                                        <small>Clear All</small>
+                                    </a>
+                                </span>Notification
+                        </h5>
+                    </div>
+
+                    <div class="slimscroll noti-scroll">
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item active">
+                            <div class="notify-icon">
+                                <img src="/assets/images/users/user-1.jpg" class="img-fluid rounded-circle" alt="">
+                            </div>
+                            <p class="notify-details">Cristina Pride</p>
+                            <p class="text-muted mb-0 user-msg">
+                                <small>Hi, How are you? What about our next meeting</small>
+                            </p>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon bg-primary">
+                                <i class="mdi mdi-comment-account-outline"></i>
+                            </div>
+                            <p class="notify-details">Caleb Flakelar commented on Admin
+                                <small class="text-muted">1 min ago</small>
+                            </p>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon">
+                                <img src="/assets/images/users/user-4.jpg" class="img-fluid rounded-circle" alt="">
+                            </div>
+                            <p class="notify-details">Karen Robinson</p>
+                            <p class="text-muted mb-0 user-msg">
+                                <small>Wow ! this admin looks good and awesome design</small>
+                            </p>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon bg-warning">
+                                <i class="mdi mdi-account-plus"></i>
+                            </div>
+                            <p class="notify-details">New user registered.
+                                <small class="text-muted">5 hours ago</small>
+                            </p>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon bg-info">
+                                <i class="mdi mdi-comment-account-outline"></i>
+                            </div>
+                            <p class="notify-details">Caleb Flakelar commented on Admin
+                                <small class="text-muted">4 days ago</small>
+                            </p>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="notify-icon bg-secondary">
+                                <i class="mdi mdi-heart text-danger"></i>
+                            </div>
+                            <p class="notify-details">Carlos Crouch liked
+                                <b>Admin</b>
+                                <small class="text-dark">13 days ago</small>
+                            </p>
+                        </a>
+                    </div>
+
+                    <!-- All-->
+                    <a href="javascript:void(0);"
+                       class="dropdown-item text-center text-primary notify-item notify-all">
+                        View all
+                        <i class="fi-arrow-right"></i>
+                    </a>
+
+                </div>
+            </li>
+
+            <li class="dropdown notification-list">
+                <th:block th:replace="layout/roleUser::roleUser"/>
+            </li>
+            <li class="dropdown notification-list">
+                <a href="javascript:void(0);" class="nav-link right-bar-toggle waves-effect waves-light">
+                    <i class="fe-settings noti-icon"></i>
+                </a>
+            </li>
+        </ul>
+
+        <!-- LOGO -->
+        <div class="logo-box">
+            <a href="/homepage" class="logo text-center">
+                    <span class="logo-lg">
+                        <img src="/assets/images/logo-light.png" alt="" height="24">
+                        <!-- <span class="logo-lg-text-light">Upvex</span> -->
+                    </span>
+                <span class="logo-sm">
+                        <!-- <span class="logo-sm-text-dark">X</span> -->
+                        <img src="/assets/images/logo-sm.png" alt="" height="28">
+                    </span>
+            </a>
+        </div>
+    </div>
+    <!-- end Topbar -->
+
+    <!-- ========== Left Sidebar Start ========== -->
+    <div class="left-side-menu">
+
+        <div class="slimscroll-menu">
+
+            <!--- Sidemenu -->
+            <div id="sidebar-menu">
+
+                <ul class="metismenu" id="side-menu"  style="font-size: large;color: #8391a0;">
+
+                    <li class="menu-title">Navigation</li>
+
+                    <th:block th:replace="/layout/menu::menu"/>
+
+                </ul>
+
+            </div>
+            <!-- End Sidebar -->
+
+            <div class="clearfix"></div>
+
+        </div>
+        <!-- Sidebar -left -->
+
+    </div>
+    <!-- Left Sidebar End -->
+
+    <!-- ============================================================== -->
+    <!-- Start Page body table -->
+    <!-- ============================================================== -->
+
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Upvex</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Recover-Account</a>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Recover</a></li>
+                                </ol>
+                            </div>
+                            <h4 class="page-title">Recover Acount</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card-box">
+                            <div class="table-responsive">
+                                <input type="hidden" id="currentRow">
+                                <table id="tbUser" class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>FullName</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Address</th>
+                                        <th>Role</th>
+                                        <th colspan="2">Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div> <!-- end .table-responsive-->
+                        </div> <!-- end card-box-->
+                    </div> <!-- end col -->
+                </div>
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+        <!-- Footer Start -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        2019 &copy; Upvex theme by <a href="">Coderthemes</a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-md-right footer-links d-none d-sm-block">
+                            <a href="javascript:void(0);">About Us</a>
+                            <a href="javascript:void(0);">Help</a>
+                            <a href="javascript:void(0);">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- end Footer -->
+
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
+
+
+</div>
+<!-- END wrapper -->
+
+<!-- Right Sidebar -->
+<div class="right-bar">
+    <div class="rightbar-title">
+        <a href="javascript:void(0);" class="right-bar-toggle float-right">
+            <i class="mdi mdi-close"></i>
+        </a>
+        <h5 class="m-0 text-white">Settings</h5>
+    </div>
+    <div class="slimscroll-menu">
+        <!-- User box -->
+        <div class="user-box">
+            <div class="user-img">
+                <img src="/assets/images/users/user-1.jpg" alt="user-img" title="Mat Helme"
+                     class="rounded-circle img-fluid">
+                <a href="javascript:void(0);" class="user-edit"><i class="mdi mdi-pencil"></i></a>
+            </div>
+
+            <h5><a href="javascript: void(0);">Marcia J. Melia</a> </h5>
+            <p class="text-muted mb-0"><small>Product Owner</small></p>
+        </div>
+
+        <!-- Settings -->
+        <hr class="mt-0">
+        <div class="row">
+            <div class="col-6 text-center">
+                <h4 class="mb-1 mt-0">8,504</h4>
+                <p class="m-0">Balance</p>
+            </div>
+            <div class="col-6 text-center">
+                <h4 class="mb-1 mt-0">8,504</h4>
+                <p class="m-0">Balance</p>
+            </div>
+        </div>
+        <hr class="mb-0">
+
+        <div class="p-3">
+            <div class="custom-control custom-switch mb-2">
+                <input type="checkbox" class="custom-control-input" id="customSwitch1" checked="">
+                <label class="custom-control-label" for="customSwitch1">Notifications</label>
+            </div>
+            <div class="custom-control custom-switch mb-2">
+                <input type="checkbox" class="custom-control-input" id="customSwitch2">
+                <label class="custom-control-label" for="customSwitch2">API Access</label>
+            </div>
+            <div class="custom-control custom-switch mb-2">
+                <input type="checkbox" class="custom-control-input" id="customSwitch3" checked="">
+                <label class="custom-control-label" for="customSwitch3">Auto Updates</label>
+            </div>
+            <div class="custom-control custom-switch mb-2">
+                <input type="checkbox" class="custom-control-input" id="customSwitch4" checked="">
+                <label class="custom-control-label" for="customSwitch4">Online Status</label>
+            </div>
+        </div>
+
+        <!-- Timeline -->
+        <hr class="mt-0">
+        <h5 class="pl-3 pr-3">Messages <span class="float-right badge badge-pill badge-danger">25</span></h5>
+        <hr class="mb-0">
+        <div class="p-3">
+            <div class="inbox-widget">
+                <div class="inbox-item">
+                    <div class="inbox-item-img"><img src="/assets/images/users/user-2.jpg" class="rounded-circle"
+                                                     alt=""></div>
+                    <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Tomaslau</a></p>
+                    <p class="inbox-item-text">I've finished it! See you so...</p>
+                </div>
+                <div class="inbox-item">
+                    <div class="inbox-item-img"><img src="/assets/images/users/user-3.jpg" class="rounded-circle"
+                                                     alt=""></div>
+                    <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Stillnotdavid</a>
+                    </p>
+                    <p class="inbox-item-text">This theme is awesome!</p>
+                </div>
+                <div class="inbox-item">
+                    <div class="inbox-item-img"><img src="/assets/images/users/user-4.jpg" class="rounded-circle"
+                                                     alt=""></div>
+                    <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Kurafire</a></p>
+                    <p class="inbox-item-text">Nice to meet you</p>
+                </div>
+
+                <div class="inbox-item">
+                    <div class="inbox-item-img"><img src="/assets/images/users/user-5.jpg" class="rounded-circle"
+                                                     alt=""></div>
+                    <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Shahedk</a></p>
+                    <p class="inbox-item-text">Hey! there I'm available...</p>
+                </div>
+                <div class="inbox-item">
+                    <div class="inbox-item-img"><img src="/assets/images/users/user-6.jpg" class="rounded-circle"
+                                                     alt=""></div>
+                    <p class="inbox-item-author"><a href="javascript: void(0);" class="text-dark">Adhamdannaway</a>
+                    </p>
+                    <p class="inbox-item-text">This theme is awesome!</p>
+                </div>
+            </div> <!-- end inbox-widget -->
+        </div> <!-- end .p-3-->
+
+    </div> <!-- end slimscroll-menu-->
+</div>
+<!-- /Right-bar -->
+
+<!-- Right bar overlay-->
+<div class="rightbar-overlay"></div>
+
+<div class="loader hide"></div>
+
+
+<th:block th:replace="/layout/script::script"/>
+<script>
+    let page = {
+        urls: {
+            getAllUsersDele: App.BASE_URL_USER_DELE,
+            getUserById: App.BASE_URL_USER,
+            recover: App.BASE_URL_USER + "/recover",
+        },
+        elements: {},
+        loadData: {},
+        commands: {},
+        dialogs: {
+            elements: {},
+            loadData: {},
+            commands: {},
+        },
+        initializeEventControl: {}
+    }
+
+    let user = new User();
+
+
+    page.elements.tbUser = $("#tbUser tbody");
+
+
+    page.commands.getAllUsersDele = () => {
+        $.ajax({
+            headers: {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            type: "GET",
+            url: page.urls.getAllUsersDele
+        })
+            .done((data) => {
+                if (data.length == 0) {
+                    App.SweetAlert.showAlertError("Không có tài khoản cần khôi phục");
+                }
+                data.map(item => {
+                    page.elements.tbUser.prepend(App.renderRowUserDeleList(item));
+
+                    page.commands.handleRecoverUser();
+                    page.commands.initTooltip();
+                });
+            })
+            .fail((jqXHR) => {
+                App.SweetAlert.showAlertError(App.AlertMessageVi.ERROR_500);
+            })
+    }
+
+    page.commands.handleRecoverUser = () => {
+        $(".recover").on("click", function () {
+            let userId = $(this).data("id");
+
+            App.SweetAlert.showSuspendedConfirmDialogRecoverUser()
+                .then((result) => {
+                    if(result.isConfirmed) {
+                        page.commands.recoverUser(userId);
+                    }
+                });
+        })
+    }
+
+    page.commands.getUserById = (userId) => {
+        return $.ajax({
+            headers: {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            type: "GET",
+            url: page.urls.getUserById + "/" + userId
+        })
+            .done((data) => {
+                user = data;
+            })
+            .fail((jqXHR) => {
+                console.log(jqXHR);
+            });
+    }
+
+    page.commands.recoverUser = (userId) => {
+        $.ajax({
+            headers: {
+                "accept": "application/json",
+                "content-type": "application/json"
+            },
+            type: "POST",
+            url: page.urls.recover + "/" + userId
+        })
+            .done(() => {
+                $("#tr_" + userId).remove();
+                App.SweetAlert.showAlertSuccess(App.AlertMessageVi.SUCCESS_RECOVER_USER);
+            })
+            .fail((jqXHR) => {
+                App.AlertMessageVi.ERROR_400;
+            })
+    }
+
+
+    page.commands.initTooltip = () => {
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    }
+
+    page.initializeEventControl = () => {
+
+    }
+
+    page.loadData = () => {
+        page.commands.getAllUsersDele();
+    }
+
+    $(() => {
+        page.loadData();
+
+        page.initializeEventControl();
+    })
+
+</script>
+</body>
+
+</html>
